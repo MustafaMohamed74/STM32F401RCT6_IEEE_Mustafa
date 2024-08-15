@@ -1,0 +1,37 @@
+/*
+ * RCC_Program.c
+ *
+ *  Created on: Aug 14, 2024
+ *      Author: 20128
+ */
+
+#include "../LIB/STD_Types.h"
+#include "../LIB/Bit_Math.h"
+#include "RCC_Registers.h"
+#include "RCC_Interface.h"
+#include "RCC_Config.h"
+
+void RCC_Init(void){
+	#if RCC_Clock == RCC_HSE
+	/*Enable clock*/
+	Set_Bit(RCC_Registers->CR,HSEON);
+	/*wait until it stable*/
+	while(Get_Bit(RCC_Registers->CR,HSERDY));
+	/*choose the clock source*/
+	uint32 temp_CFGR = RCC_Registers->CFGR ;
+	uint32 mask = LS2B_MASK ;
+	temp&=(~(LS2B_MASK));
+	temp |= (uint32)HSE_Select ;
+	RCC_Registers->CFGR = temp_CFGR;
+	#elif RCC_Clock == RCC_HSI
+	#elif RCC_Clock == RCC_PLL
+	#elif RCC_Clock == RCC_LSE
+	#elif RCC_Clock == RCC_LSI
+	#endif
+}
+void RCC_Enable_peripheral(void){
+
+}
+void RCC_Disable_peripheral(void){
+
+}

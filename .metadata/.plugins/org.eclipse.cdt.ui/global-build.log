@@ -1,0 +1,543 @@
+02:33:22 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc "../MCAL/RCC_Driver/RCC_Program.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"MCAL/RCC_Driver/RCC_Program.d" -MT"MCAL/RCC_Driver/RCC_Program.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "MCAL/RCC_Driver/RCC_Program.o"
+../MCAL/RCC_Driver/RCC_Program.c: In function 'RCC_Init':
+../MCAL/RCC_Driver/RCC_Program.c:23:9: error: 'temp' undeclared (first use in this function)
+   23 |         temp |= (uint32)HSE_Select ;
+      |         ^~~~
+../MCAL/RCC_Driver/RCC_Program.c:23:9: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [MCAL/RCC_Driver/subdir.mk:19: MCAL/RCC_Driver/RCC_Program.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+02:33:31 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc "../MCAL/RCC_Driver/RCC_Program.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"MCAL/RCC_Driver/RCC_Program.d" -MT"MCAL/RCC_Driver/RCC_Program.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "MCAL/RCC_Driver/RCC_Program.o"
+arm-none-eabi-gcc -o "Stm32F401RCT6_Driver.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Documents\STM32F401RCT6_IEEE\Stm32F401RCT6_Driver\STM32F401RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Stm32F401RCT6_Driver.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Stm32F401RCT6_Driver.elf
+ 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+arm-none-eabi-objdump -h -S Stm32F401RCT6_Driver.elf  > "Stm32F401RCT6_Driver.list"
+   text	   data	    bss	    dec	    hex	filename
+    744	      0	   1568	   2312	    908	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+Finished building: Stm32F401RCT6_Driver.list
+ 
+02:34:05 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+   text	   data	    bss	    dec	    hex	filename
+    744	      0	   1568	   2312	    908	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+02:39:09 **** Clean-only build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 clean 
+rm -rf ./Startup/startup_stm32f401rctx.d ./Startup/startup_stm32f401rctx.o
+rm -rf ./Src/main.cyclo ./Src/main.d ./Src/main.o ./Src/main.su ./Src/syscalls.cyclo ./Src/syscalls.d ./Src/syscalls.o ./Src/syscalls.su ./Src/sysmem.cyclo ./Src/sysmem.d ./Src/sysmem.o ./Src/sysmem.su
+rm -rf ./MCAL/RCC_Driver/RCC_Program.cyclo ./MCAL/RCC_Driver/RCC_Program.d ./MCAL/RCC_Driver/RCC_Program.o ./MCAL/RCC_Driver/RCC_Program.su
+rm -rf Stm32F401RCT6_Driver.elf Stm32F401RCT6_Driver.list Stm32F401RCT6_Driver.map default.size.stdout
+ 
+02:39:09 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc -mcpu=cortex-m4 -g3 -DDEBUG -c -x assembler-with-cpp -MMD -MP -MF"Startup/startup_stm32f401rctx.d" -MT"Startup/startup_stm32f401rctx.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Startup/startup_stm32f401rctx.o" "../Startup/startup_stm32f401rctx.s"
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../Src/syscalls.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/syscalls.d" -MT"Src/syscalls.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/syscalls.o"
+arm-none-eabi-gcc "../Src/sysmem.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/sysmem.d" -MT"Src/sysmem.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/sysmem.o"
+arm-none-eabi-gcc "../MCAL/RCC_Driver/RCC_Program.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"MCAL/RCC_Driver/RCC_Program.d" -MT"MCAL/RCC_Driver/RCC_Program.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "MCAL/RCC_Driver/RCC_Program.o"
+arm-none-eabi-gcc -o "Stm32F401RCT6_Driver.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Documents\STM32F401RCT6_IEEE\Stm32F401RCT6_Driver\STM32F401RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Stm32F401RCT6_Driver.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Stm32F401RCT6_Driver.elf
+ 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+arm-none-eabi-objdump -h -S Stm32F401RCT6_Driver.elf  > "Stm32F401RCT6_Driver.list"
+   text	   data	    bss	    dec	    hex	filename
+    744	      0	   1568	   2312	    908	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+Finished building: Stm32F401RCT6_Driver.list
+ 
+02:39:14 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+   text	   data	    bss	    dec	    hex	filename
+    744	      0	   1568	   2312	    908	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+02:41:14 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+   text	   data	    bss	    dec	    hex	filename
+    744	      0	   1568	   2312	    908	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+02:47:56 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc "../MCAL/RCC_Driver/RCC_Program.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"MCAL/RCC_Driver/RCC_Program.d" -MT"MCAL/RCC_Driver/RCC_Program.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "MCAL/RCC_Driver/RCC_Program.o"
+../MCAL/RCC_Driver/RCC_Program.c: In function 'RCC_Init':
+../MCAL/RCC_Driver/RCC_Program.c:43:30: error: 'CLOCK_Select' undeclared (first use in this function); did you mean 'clock_Select'?
+   43 |         temp_CFGR |= (uint32)CLOCK_Select ;
+      |                              ^~~~~~~~~~~~
+      |                              clock_Select
+../MCAL/RCC_Driver/RCC_Program.c:43:30: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [MCAL/RCC_Driver/subdir.mk:19: MCAL/RCC_Driver/RCC_Program.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+02:48:06 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc "../MCAL/RCC_Driver/RCC_Program.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"MCAL/RCC_Driver/RCC_Program.d" -MT"MCAL/RCC_Driver/RCC_Program.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "MCAL/RCC_Driver/RCC_Program.o"
+../MCAL/RCC_Driver/RCC_Program.c: In function 'RCC_Init':
+../MCAL/RCC_Driver/RCC_Program.c:43:30: error: 'CLOCK_Select' undeclared (first use in this function); did you mean 'clock_Select'?
+   43 |         temp_CFGR |= (uint32)CLOCK_Select ;
+      |                              ^~~~~~~~~~~~
+      |                              clock_Select
+../MCAL/RCC_Driver/RCC_Program.c:43:30: note: each undeclared identifier is reported only once for each function it appears in
+make: *** [MCAL/RCC_Driver/subdir.mk:19: MCAL/RCC_Driver/RCC_Program.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+02:48:36 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc "../MCAL/RCC_Driver/RCC_Program.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"MCAL/RCC_Driver/RCC_Program.d" -MT"MCAL/RCC_Driver/RCC_Program.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "MCAL/RCC_Driver/RCC_Program.o"
+arm-none-eabi-gcc -o "Stm32F401RCT6_Driver.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Documents\STM32F401RCT6_IEEE\Stm32F401RCT6_Driver\STM32F401RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Stm32F401RCT6_Driver.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Stm32F401RCT6_Driver.elf
+ 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+arm-none-eabi-objdump -h -S Stm32F401RCT6_Driver.elf  > "Stm32F401RCT6_Driver.list"
+   text	   data	    bss	    dec	    hex	filename
+    744	      0	   1568	   2312	    908	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+Finished building: Stm32F401RCT6_Driver.list
+ 
+02:48:40 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+   text	   data	    bss	    dec	    hex	filename
+    744	      0	   1568	   2312	    908	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+02:51:44 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc "../MCAL/RCC_Driver/RCC_Program.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"MCAL/RCC_Driver/RCC_Program.d" -MT"MCAL/RCC_Driver/RCC_Program.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "MCAL/RCC_Driver/RCC_Program.o"
+arm-none-eabi-gcc -o "Stm32F401RCT6_Driver.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Documents\STM32F401RCT6_IEEE\Stm32F401RCT6_Driver\STM32F401RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Stm32F401RCT6_Driver.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Stm32F401RCT6_Driver.elf
+ 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+arm-none-eabi-objdump -h -S Stm32F401RCT6_Driver.elf  > "Stm32F401RCT6_Driver.list"
+   text	   data	    bss	    dec	    hex	filename
+    768	      0	   1568	   2336	    920	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+Finished building: Stm32F401RCT6_Driver.list
+ 
+02:54:12 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+   text	   data	    bss	    dec	    hex	filename
+    768	      0	   1568	   2336	    920	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+02:55:12 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+   text	   data	    bss	    dec	    hex	filename
+    768	      0	   1568	   2336	    920	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+02:55:44 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc "../MCAL/RCC_Driver/RCC_Program.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"MCAL/RCC_Driver/RCC_Program.d" -MT"MCAL/RCC_Driver/RCC_Program.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "MCAL/RCC_Driver/RCC_Program.o"
+arm-none-eabi-gcc -o "Stm32F401RCT6_Driver.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Documents\STM32F401RCT6_IEEE\Stm32F401RCT6_Driver\STM32F401RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Stm32F401RCT6_Driver.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Stm32F401RCT6_Driver.elf
+ 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+arm-none-eabi-objdump -h -S Stm32F401RCT6_Driver.elf  > "Stm32F401RCT6_Driver.list"
+   text	   data	    bss	    dec	    hex	filename
+    768	      0	   1568	   2336	    920	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+Finished building: Stm32F401RCT6_Driver.list
+ 
+02:56:42 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc "../MCAL/RCC_Driver/RCC_Program.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"MCAL/RCC_Driver/RCC_Program.d" -MT"MCAL/RCC_Driver/RCC_Program.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "MCAL/RCC_Driver/RCC_Program.o"
+arm-none-eabi-gcc -o "Stm32F401RCT6_Driver.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Documents\STM32F401RCT6_IEEE\Stm32F401RCT6_Driver\STM32F401RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Stm32F401RCT6_Driver.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Stm32F401RCT6_Driver.elf
+ 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+arm-none-eabi-objdump -h -S Stm32F401RCT6_Driver.elf  > "Stm32F401RCT6_Driver.list"
+   text	   data	    bss	    dec	    hex	filename
+    768	      0	   1568	   2336	    920	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+Finished building: Stm32F401RCT6_Driver.list
+ 
+02:57:52 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc "../MCAL/RCC_Driver/RCC_Program.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"MCAL/RCC_Driver/RCC_Program.d" -MT"MCAL/RCC_Driver/RCC_Program.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "MCAL/RCC_Driver/RCC_Program.o"
+arm-none-eabi-gcc -o "Stm32F401RCT6_Driver.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Documents\STM32F401RCT6_IEEE\Stm32F401RCT6_Driver\STM32F401RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Stm32F401RCT6_Driver.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Stm32F401RCT6_Driver.elf
+ 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+arm-none-eabi-objdump -h -S Stm32F401RCT6_Driver.elf  > "Stm32F401RCT6_Driver.list"
+   text	   data	    bss	    dec	    hex	filename
+    768	      0	   1568	   2336	    920	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+Finished building: Stm32F401RCT6_Driver.list
+ 
+03:00:39 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc "../MCAL/RCC_Driver/RCC_Program.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"MCAL/RCC_Driver/RCC_Program.d" -MT"MCAL/RCC_Driver/RCC_Program.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "MCAL/RCC_Driver/RCC_Program.o"
+arm-none-eabi-gcc -o "Stm32F401RCT6_Driver.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Documents\STM32F401RCT6_IEEE\Stm32F401RCT6_Driver\STM32F401RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Stm32F401RCT6_Driver.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Stm32F401RCT6_Driver.elf
+ 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+arm-none-eabi-objdump -h -S Stm32F401RCT6_Driver.elf  > "Stm32F401RCT6_Driver.list"
+   text	   data	    bss	    dec	    hex	filename
+    780	      0	   1568	   2348	    92c	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+Finished building: Stm32F401RCT6_Driver.list
+ 
+03:02:04 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc "../MCAL/RCC_Driver/RCC_Program.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"MCAL/RCC_Driver/RCC_Program.d" -MT"MCAL/RCC_Driver/RCC_Program.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "MCAL/RCC_Driver/RCC_Program.o"
+arm-none-eabi-gcc -o "Stm32F401RCT6_Driver.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Documents\STM32F401RCT6_IEEE\Stm32F401RCT6_Driver\STM32F401RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Stm32F401RCT6_Driver.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Stm32F401RCT6_Driver.elf
+ 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+arm-none-eabi-objdump -h -S Stm32F401RCT6_Driver.elf  > "Stm32F401RCT6_Driver.list"
+   text	   data	    bss	    dec	    hex	filename
+    796	      0	   1568	   2364	    93c	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+Finished building: Stm32F401RCT6_Driver.list
+ 
+03:05:57 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc "../MCAL/RCC_Driver/RCC_Program.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"MCAL/RCC_Driver/RCC_Program.d" -MT"MCAL/RCC_Driver/RCC_Program.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "MCAL/RCC_Driver/RCC_Program.o"
+arm-none-eabi-gcc -o "Stm32F401RCT6_Driver.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Documents\STM32F401RCT6_IEEE\Stm32F401RCT6_Driver\STM32F401RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Stm32F401RCT6_Driver.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Stm32F401RCT6_Driver.elf
+ 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+arm-none-eabi-objdump -h -S Stm32F401RCT6_Driver.elf  > "Stm32F401RCT6_Driver.list"
+   text	   data	    bss	    dec	    hex	filename
+    784	      0	   1568	   2352	    930	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+Finished building: Stm32F401RCT6_Driver.list
+ 
+03:07:29 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+   text	   data	    bss	    dec	    hex	filename
+    784	      0	   1568	   2352	    930	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+03:07:32 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+   text	   data	    bss	    dec	    hex	filename
+    784	      0	   1568	   2352	    930	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+03:08:13 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc "../MCAL/RCC_Driver/RCC_Program.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"MCAL/RCC_Driver/RCC_Program.d" -MT"MCAL/RCC_Driver/RCC_Program.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "MCAL/RCC_Driver/RCC_Program.o"
+arm-none-eabi-gcc -o "Stm32F401RCT6_Driver.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Documents\STM32F401RCT6_IEEE\Stm32F401RCT6_Driver\STM32F401RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Stm32F401RCT6_Driver.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Stm32F401RCT6_Driver.elf
+ 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+arm-none-eabi-objdump -h -S Stm32F401RCT6_Driver.elf  > "Stm32F401RCT6_Driver.list"
+   text	   data	    bss	    dec	    hex	filename
+    768	      0	   1568	   2336	    920	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+Finished building: Stm32F401RCT6_Driver.list
+ 
+03:09:04 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc "../MCAL/RCC_Driver/RCC_Program.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"MCAL/RCC_Driver/RCC_Program.d" -MT"MCAL/RCC_Driver/RCC_Program.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "MCAL/RCC_Driver/RCC_Program.o"
+arm-none-eabi-gcc -o "Stm32F401RCT6_Driver.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Documents\STM32F401RCT6_IEEE\Stm32F401RCT6_Driver\STM32F401RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Stm32F401RCT6_Driver.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Stm32F401RCT6_Driver.elf
+ 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+arm-none-eabi-objdump -h -S Stm32F401RCT6_Driver.elf  > "Stm32F401RCT6_Driver.list"
+   text	   data	    bss	    dec	    hex	filename
+    792	      0	   1568	   2360	    938	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+Finished building: Stm32F401RCT6_Driver.list
+ 
+03:24:26 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc "../MCAL/RCC_Driver/RCC_Program.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"MCAL/RCC_Driver/RCC_Program.d" -MT"MCAL/RCC_Driver/RCC_Program.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "MCAL/RCC_Driver/RCC_Program.o"
+../MCAL/RCC_Driver/RCC_Program.c:56:6: error: conflicting types for 'RCC_Enable_peripheral'; have 'void(uint32,  uint8)' {aka 'void(unsigned int,  unsigned char)'}
+   56 | void RCC_Enable_peripheral(uint32 Desired_Reg ,uint8 peripheral){
+      |      ^~~~~~~~~~~~~~~~~~~~~
+In file included from ../MCAL/RCC_Driver/RCC_Program.c:11:
+../MCAL/RCC_Driver/RCC_Interface.h:12:6: note: previous declaration of 'RCC_Enable_peripheral' with type 'void(void)'
+   12 | void RCC_Enable_peripheral(void);
+      |      ^~~~~~~~~~~~~~~~~~~~~
+In file included from ../MCAL/RCC_Driver/RCC_Program.c:9:
+../MCAL/RCC_Driver/RCC_Program.c: In function 'RCC_Enable_peripheral':
+../MCAL/RCC_Driver/RCC_Program.c:57:22: error: 'RCC_RegDef' has no member named 'Desired_Reg'
+   57 | Set_Bit(RCC_Registers->Desired_Reg , peripheral);
+      |                      ^~
+../Inc/../LIB/Bit_Math.h:29:28: note: in definition of macro 'Set_Bit'
+   29 | #define Set_Bit(Var,BitNo) Var=Var|(1<<BitNo)
+      |                            ^~~
+../MCAL/RCC_Driver/RCC_Program.c:57:22: error: 'RCC_RegDef' has no member named 'Desired_Reg'
+   57 | Set_Bit(RCC_Registers->Desired_Reg , peripheral);
+      |                      ^~
+../Inc/../LIB/Bit_Math.h:29:32: note: in definition of macro 'Set_Bit'
+   29 | #define Set_Bit(Var,BitNo) Var=Var|(1<<BitNo)
+      |                                ^~~
+make: *** [MCAL/RCC_Driver/subdir.mk:19: MCAL/RCC_Driver/RCC_Program.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+03:24:55 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc "../MCAL/RCC_Driver/RCC_Program.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"MCAL/RCC_Driver/RCC_Program.d" -MT"MCAL/RCC_Driver/RCC_Program.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "MCAL/RCC_Driver/RCC_Program.o"
+../MCAL/RCC_Driver/RCC_Program.c:56:6: error: conflicting types for 'RCC_Enable_peripheral'; have 'void(uint32 *, uint8)' {aka 'void(unsigned int *, unsigned char)'}
+   56 | void RCC_Enable_peripheral(uint32 * Desired_Reg ,uint8 peripheral){
+      |      ^~~~~~~~~~~~~~~~~~~~~
+In file included from ../MCAL/RCC_Driver/RCC_Program.c:11:
+../MCAL/RCC_Driver/RCC_Interface.h:12:6: note: previous declaration of 'RCC_Enable_peripheral' with type 'void(void)'
+   12 | void RCC_Enable_peripheral(void);
+      |      ^~~~~~~~~~~~~~~~~~~~~
+In file included from ../MCAL/RCC_Driver/RCC_Program.c:9:
+../MCAL/RCC_Driver/RCC_Program.c: In function 'RCC_Enable_peripheral':
+../MCAL/RCC_Driver/RCC_Program.c:57:22: error: 'RCC_RegDef' has no member named 'Desired_Reg'
+   57 | Set_Bit(RCC_Registers->Desired_Reg , peripheral);
+      |                      ^~
+../Inc/../LIB/Bit_Math.h:29:28: note: in definition of macro 'Set_Bit'
+   29 | #define Set_Bit(Var,BitNo) Var=Var|(1<<BitNo)
+      |                            ^~~
+../MCAL/RCC_Driver/RCC_Program.c:57:22: error: 'RCC_RegDef' has no member named 'Desired_Reg'
+   57 | Set_Bit(RCC_Registers->Desired_Reg , peripheral);
+      |                      ^~
+../Inc/../LIB/Bit_Math.h:29:32: note: in definition of macro 'Set_Bit'
+   29 | #define Set_Bit(Var,BitNo) Var=Var|(1<<BitNo)
+      |                                ^~~
+make: *** [MCAL/RCC_Driver/subdir.mk:19: MCAL/RCC_Driver/RCC_Program.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+03:30:11 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc "../MCAL/RCC_Driver/RCC_Program.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"MCAL/RCC_Driver/RCC_Program.d" -MT"MCAL/RCC_Driver/RCC_Program.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "MCAL/RCC_Driver/RCC_Program.o"
+../MCAL/RCC_Driver/RCC_Program.c:56:28: error: expected declaration specifiers or '...' before '(' token
+   56 | void RCC_Enable_peripheral((uint32 *)RCC_Registers ,uint8 peripheral){
+      |                            ^
+make: *** [MCAL/RCC_Driver/subdir.mk:19: MCAL/RCC_Driver/RCC_Program.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+03:39:51 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../MCAL/RCC_Driver/RCC_Program.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"MCAL/RCC_Driver/RCC_Program.d" -MT"MCAL/RCC_Driver/RCC_Program.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "MCAL/RCC_Driver/RCC_Program.o"
+../MCAL/RCC_Driver/RCC_Program.c:56:6: error: conflicting types for 'RCC_Enable_peripheral'; have 'void(uint8,  uint8)' {aka 'void(unsigned char,  unsigned char)'}
+   56 | void RCC_Enable_peripheral(uint8 Desired_Bus ,uint8 peripheral){
+      |      ^~~~~~~~~~~~~~~~~~~~~
+In file included from ../MCAL/RCC_Driver/RCC_Program.c:11:
+../MCAL/RCC_Driver/RCC_Interface.h:16:6: note: previous declaration of 'RCC_Enable_peripheral' with type 'void(void)'
+   16 | void RCC_Enable_peripheral(void);
+      |      ^~~~~~~~~~~~~~~~~~~~~
+make: *** [MCAL/RCC_Driver/subdir.mk:19: MCAL/RCC_Driver/RCC_Program.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+03:40:58 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../MCAL/RCC_Driver/RCC_Program.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"MCAL/RCC_Driver/RCC_Program.d" -MT"MCAL/RCC_Driver/RCC_Program.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "MCAL/RCC_Driver/RCC_Program.o"
+In file included from ../Src/main.c:20:
+../Src/../MCAL/RCC_Driver/RCC_Interface.h:16:28: error: unknown type name 'uint8'; did you mean 'int'?
+   16 | void RCC_Enable_peripheral(uint8 Desired_Bus ,uint8 peripheral);
+      |                            ^~~~~
+      |                            int
+../Src/../MCAL/RCC_Driver/RCC_Interface.h:16:47: error: unknown type name 'uint8'; did you mean 'int'?
+   16 | void RCC_Enable_peripheral(uint8 Desired_Bus ,uint8 peripheral);
+      |                                               ^~~~~
+      |                                               int
+make: *** [Src/subdir.mk:25: Src/main.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+03:41:38 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+In file included from ../Src/main.c:20:
+../Src/../MCAL/RCC_Driver/RCC_Interface.h:16:28: error: unknown type name 'uint8'; did you mean 'int'?
+   16 | void RCC_Enable_peripheral(uint8 Desired_Bus ,uint8 peripheral);
+      |                            ^~~~~
+      |                            int
+../Src/../MCAL/RCC_Driver/RCC_Interface.h:16:47: error: unknown type name 'uint8'; did you mean 'int'?
+   16 | void RCC_Enable_peripheral(uint8 Desired_Bus ,uint8 peripheral);
+      |                                               ^~~~~
+      |                                               int
+make: *** [Src/subdir.mk:25: Src/main.o] Error 1
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+03:42:20 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../MCAL/RCC_Driver/RCC_Program.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"MCAL/RCC_Driver/RCC_Program.d" -MT"MCAL/RCC_Driver/RCC_Program.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "MCAL/RCC_Driver/RCC_Program.o"
+arm-none-eabi-gcc -o "Stm32F401RCT6_Driver.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Documents\STM32F401RCT6_IEEE\Stm32F401RCT6_Driver\STM32F401RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Stm32F401RCT6_Driver.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Stm32F401RCT6_Driver.elf
+ 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+arm-none-eabi-objdump -h -S Stm32F401RCT6_Driver.elf  > "Stm32F401RCT6_Driver.list"
+   text	   data	    bss	    dec	    hex	filename
+    768	      0	   1568	   2336	    920	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+Finished building: Stm32F401RCT6_Driver.list
+ 
+03:43:13 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../MCAL/RCC_Driver/RCC_Program.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"MCAL/RCC_Driver/RCC_Program.d" -MT"MCAL/RCC_Driver/RCC_Program.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "MCAL/RCC_Driver/RCC_Program.o"
+arm-none-eabi-gcc -o "Stm32F401RCT6_Driver.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Documents\STM32F401RCT6_IEEE\Stm32F401RCT6_Driver\STM32F401RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Stm32F401RCT6_Driver.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Stm32F401RCT6_Driver.elf
+ 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+arm-none-eabi-objdump -h -S Stm32F401RCT6_Driver.elf  > "Stm32F401RCT6_Driver.list"
+   text	   data	    bss	    dec	    hex	filename
+    768	      0	   1568	   2336	    920	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+Finished building: Stm32F401RCT6_Driver.list
+ 
+03:46:46 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../MCAL/RCC_Driver/RCC_Program.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"MCAL/RCC_Driver/RCC_Program.d" -MT"MCAL/RCC_Driver/RCC_Program.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "MCAL/RCC_Driver/RCC_Program.o"
+arm-none-eabi-gcc -o "Stm32F401RCT6_Driver.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Documents\STM32F401RCT6_IEEE\Stm32F401RCT6_Driver\STM32F401RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Stm32F401RCT6_Driver.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Stm32F401RCT6_Driver.elf
+ 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+arm-none-eabi-objdump -h -S Stm32F401RCT6_Driver.elf  > "Stm32F401RCT6_Driver.list"
+   text	   data	    bss	    dec	    hex	filename
+    768	      0	   1568	   2336	    920	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+Finished building: Stm32F401RCT6_Driver.list
+ 
+03:47:23 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc -o "Stm32F401RCT6_Driver.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Documents\STM32F401RCT6_IEEE\Stm32F401RCT6_Driver\STM32F401RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Stm32F401RCT6_Driver.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Stm32F401RCT6_Driver.elf
+ 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+arm-none-eabi-objdump -h -S Stm32F401RCT6_Driver.elf  > "Stm32F401RCT6_Driver.list"
+   text	   data	    bss	    dec	    hex	filename
+    924	      0	   1568	   2492	    9bc	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+Finished building: Stm32F401RCT6_Driver.list
+ 
+03:47:47 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+   text	   data	    bss	    dec	    hex	filename
+    924	      0	   1568	   2492	    9bc	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+03:52:37 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../MCAL/RCC_Driver/RCC_Program.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"MCAL/RCC_Driver/RCC_Program.d" -MT"MCAL/RCC_Driver/RCC_Program.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "MCAL/RCC_Driver/RCC_Program.o"
+../Src/main.c: In function 'main':
+../Src/main.c:30:9: warning: implicit declaration of function 'RCC_Disble_peripheral'; did you mean 'RCC_Disable_peripheral'? [-Wimplicit-function-declaration]
+   30 |         RCC_Disble_peripheral(APB2,RCC_APB2ENR_TIM9EN);
+      |         ^~~~~~~~~~~~~~~~~~~~~
+      |         RCC_Disable_peripheral
+../MCAL/RCC_Driver/RCC_Program.c: In function 'RCC_Enable_peripheral':
+../MCAL/RCC_Driver/RCC_Program.c:62:6: error: 'ABP1' undeclared (first use in this function); did you mean 'APB1'?
+   62 | case ABP1 :
+      |      ^~~~
+      |      APB1
+../MCAL/RCC_Driver/RCC_Program.c:62:6: note: each undeclared identifier is reported only once for each function it appears in
+../MCAL/RCC_Driver/RCC_Program.c:65:6: error: 'ABP2' undeclared (first use in this function); did you mean 'AHP2'?
+   65 | case ABP2 :
+      |      ^~~~
+      |      AHP2
+../MCAL/RCC_Driver/RCC_Program.c: In function 'RCC_Disable_peripheral':
+../MCAL/RCC_Driver/RCC_Program.c:79:14: error: 'ABP1' undeclared (first use in this function); did you mean 'APB1'?
+   79 |         case ABP1 :
+      |              ^~~~
+      |              APB1
+../MCAL/RCC_Driver/RCC_Program.c:82:14: error: 'ABP2' undeclared (first use in this function); did you mean 'AHP2'?
+   82 |         case ABP2 :
+      |              ^~~~
+      |              AHP2
+make: *** [MCAL/RCC_Driver/subdir.mk:19: MCAL/RCC_Driver/RCC_Program.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+03:53:12 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc "../Src/main.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"Src/main.d" -MT"Src/main.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "Src/main.o"
+arm-none-eabi-gcc "../MCAL/RCC_Driver/RCC_Program.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"MCAL/RCC_Driver/RCC_Program.d" -MT"MCAL/RCC_Driver/RCC_Program.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "MCAL/RCC_Driver/RCC_Program.o"
+../MCAL/RCC_Driver/RCC_Program.c: In function 'RCC_Enable_peripheral':
+../MCAL/RCC_Driver/RCC_Program.c:62:6: error: 'ABP1' undeclared (first use in this function); did you mean 'APB1'?
+   62 | case ABP1 :
+      |      ^~~~
+      |      APB1
+../MCAL/RCC_Driver/RCC_Program.c:62:6: note: each undeclared identifier is reported only once for each function it appears in
+../MCAL/RCC_Driver/RCC_Program.c:65:6: error: 'ABP2' undeclared (first use in this function); did you mean 'AHP2'?
+   65 | case ABP2 :
+      |      ^~~~
+      |      AHP2
+../MCAL/RCC_Driver/RCC_Program.c: In function 'RCC_Disable_peripheral':
+../MCAL/RCC_Driver/RCC_Program.c:79:14: error: 'ABP1' undeclared (first use in this function); did you mean 'APB1'?
+   79 |         case ABP1 :
+      |              ^~~~
+      |              APB1
+../MCAL/RCC_Driver/RCC_Program.c:82:14: error: 'ABP2' undeclared (first use in this function); did you mean 'AHP2'?
+   82 |         case ABP2 :
+      |              ^~~~
+      |              AHP2
+make: *** [MCAL/RCC_Driver/subdir.mk:19: MCAL/RCC_Driver/RCC_Program.o] Error 1
+make: *** Waiting for unfinished jobs....
+"make -j12 all" terminated with exit code 2. Build might be incomplete.
+03:53:41 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc "../MCAL/RCC_Driver/RCC_Program.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"MCAL/RCC_Driver/RCC_Program.d" -MT"MCAL/RCC_Driver/RCC_Program.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "MCAL/RCC_Driver/RCC_Program.o"
+arm-none-eabi-gcc -o "Stm32F401RCT6_Driver.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Documents\STM32F401RCT6_IEEE\Stm32F401RCT6_Driver\STM32F401RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Stm32F401RCT6_Driver.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Stm32F401RCT6_Driver.elf
+ 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+arm-none-eabi-objdump -h -S Stm32F401RCT6_Driver.elf  > "Stm32F401RCT6_Driver.list"
+   text	   data	    bss	    dec	    hex	filename
+   1112	      0	   1568	   2680	    a78	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+Finished building: Stm32F401RCT6_Driver.list
+ 
+03:53:47 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1112	      0	   1568	   2680	    a78	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+03:54:06 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1112	      0	   1568	   2680	    a78	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+03:59:40 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-gcc "../MCAL/RCC_Driver/RCC_Program.c" -mcpu=cortex-m4 -std=gnu11 -g3 -DDEBUG -DSTM32 -DSTM32F4 -DSTM32F401RCTx -c -I../Inc -O0 -ffunction-sections -fdata-sections -Wall -fstack-usage -fcyclomatic-complexity -MMD -MP -MF"MCAL/RCC_Driver/RCC_Program.d" -MT"MCAL/RCC_Driver/RCC_Program.o" --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -o "MCAL/RCC_Driver/RCC_Program.o"
+arm-none-eabi-gcc -o "Stm32F401RCT6_Driver.elf" @"objects.list"   -mcpu=cortex-m4 -T"C:\Documents\STM32F401RCT6_IEEE\Stm32F401RCT6_Driver\STM32F401RCTX_FLASH.ld" --specs=nosys.specs -Wl,-Map="Stm32F401RCT6_Driver.map" -Wl,--gc-sections -static --specs=nano.specs -mfpu=fpv4-sp-d16 -mfloat-abi=hard -mthumb -Wl,--start-group -lc -lm -Wl,--end-group
+Finished building target: Stm32F401RCT6_Driver.elf
+ 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+arm-none-eabi-objdump -h -S Stm32F401RCT6_Driver.elf  > "Stm32F401RCT6_Driver.list"
+   text	   data	    bss	    dec	    hex	filename
+   1120	      0	   1568	   2688	    a80	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
+Finished building: Stm32F401RCT6_Driver.list
+ 
+04:02:54 **** Incremental Build of configuration Debug for project Stm32F401RCT6_Driver ****
+make -j12 all 
+arm-none-eabi-size  Stm32F401RCT6_Driver.elf 
+   text	   data	    bss	    dec	    hex	filename
+   1120	      0	   1568	   2688	    a80	Stm32F401RCT6_Driver.elf
+Finished building: default.size.stdout
+ 
