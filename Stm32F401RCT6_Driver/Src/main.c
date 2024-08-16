@@ -34,7 +34,7 @@ int main(void)
 	RCC_Disable_peripheral(RCC_APB1ENR_TIM2EN);
 
 	RCC_Disable_peripheral(RCC_APB2ENR_TIM9EN);
-
+//bla bla bla
     while(1){
 
     }
