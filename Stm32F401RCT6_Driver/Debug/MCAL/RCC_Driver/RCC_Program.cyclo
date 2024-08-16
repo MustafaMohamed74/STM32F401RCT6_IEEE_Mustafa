@@ -1,6 +1,0 @@
-../MCAL/RCC_Driver/RCC_Program.c:16:6:RCC_Init	2
-../MCAL/RCC_Driver/RCC_Program.c:84:6:RCC_Enable_peripheral	33
-../MCAL/RCC_Driver/RCC_Program.c:213:6:RCC_Disable_peripheral	33
-../MCAL/RCC_Driver/RCC_Program.c:324:6:RCC_PLLM_Config	1
-../MCAL/RCC_Driver/RCC_Program.c:330:6:RCC_PLLN_Config	1
-../MCAL/RCC_Driver/RCC_Program.c:336:6:RCC_PLLP_Config	1
