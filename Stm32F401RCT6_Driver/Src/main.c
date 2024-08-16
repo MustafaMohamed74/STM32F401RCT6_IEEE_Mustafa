@@ -23,17 +23,17 @@
 int main(void)
 {
 	RCC_Init();
-	RCC_Enable_peripheral(AHP1,RCC_AHB1ENR_GPIOA_EN);
+	RCC_Enable_peripheral(RCC_AHB1ENR_GPIOA_EN);
 
-	RCC_Enable_peripheral(APB1,RCC_APB1ENR_TIM2EN);
+	RCC_Enable_peripheral(RCC_APB1ENR_TIM2EN);
 
-	RCC_Enable_peripheral(APB2,RCC_APB2ENR_TIM9EN);
+	RCC_Enable_peripheral(RCC_APB2ENR_TIM9EN);
 
-	RCC_Disable_peripheral(AHP1,RCC_AHB1ENR_GPIOA_EN);
+	RCC_Disable_peripheral(RCC_AHB1ENR_GPIOA_EN);
 
-	RCC_Disable_peripheral(APB1,RCC_APB1ENR_TIM2EN);
+	RCC_Disable_peripheral(RCC_APB1ENR_TIM2EN);
 
-	RCC_Disable_peripheral(APB2,RCC_APB2ENR_TIM9EN);
+	RCC_Disable_peripheral(RCC_APB2ENR_TIM9EN);
 
     while(1){
 

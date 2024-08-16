@@ -40,6 +40,9 @@
 #define RCC_Registers  (((RCC_RegDef *)(RCC_Base_Address)))
 
 #define LS2B_MASK      (0X00000003) //mask for the least significant 2 bits
+#define PLLM_MASK      (0X0000001F) //mask for the least significant 5 bits
+#define PLLN_MASK      (0X00003FE0) //mask for the bits from 6 to 14
+#define PLLP_MASK      (0X00030000) //mask for the bits 16 and 17
 
 /************************** Macros_end********************/
 
@@ -166,8 +169,8 @@ typedef enum {
     PLLQ3       = 27  // Bit 27
 } RCC_PLLCFGR_Bits;
 
-// RCC AHB1 Peripheral Clock Enable Register (RCC_AHB1ENR)
 typedef enum {
+    // RCC AHB1 Peripheral Clock Enable Register (RCC_AHB1ENR)
     RCC_AHB1ENR_GPIOA_EN = 0,
     RCC_AHB1ENR_GPIOB_EN = 1,
     RCC_AHB1ENR_GPIOC_EN = 2,
@@ -176,39 +179,35 @@ typedef enum {
     RCC_AHB1ENR_GPIOH_EN = 7,
     RCC_AHB1ENR_CRCEN = 12,
     RCC_AHB1ENR_DMA1EN = 21,
-    RCC_AHB1ENR_DMA2EN = 22
-} RCC_AHB1ENR_Pos_t;
+    RCC_AHB1ENR_DMA2EN = 22,
 
-// RCC APB1 Peripheral Clock Enable Register (RCC_APB1ENR)
-typedef enum {
-    RCC_APB1ENR_TIM2EN = 0,
-    RCC_APB1ENR_TIM3EN = 1,
-    RCC_APB1ENR_TIM4EN = 2,
-    RCC_APB1ENR_TIM5EN = 3,
-    RCC_APB1ENR_WWDGEN = 11,
-    RCC_APB1ENR_SPI2EN = 14,
-    RCC_APB1ENR_SPI3EN = 15,
-    RCC_APB1ENR_USART2EN = 17,
-    RCC_APB1ENR_I2C1EN = 21,
-    RCC_APB1ENR_I2C2EN = 22,
-    RCC_APB1ENR_I2C3EN = 23,
-    RCC_APB1ENR_PWREN = 28
-} RCC_APB1ENR_Pos_t;
+    // RCC APB1 Peripheral Clock Enable Register (RCC_APB1ENR)
+    RCC_APB1ENR_TIM2EN = 0 + 32 ,
+    RCC_APB1ENR_TIM3EN = 1 + 32,
+    RCC_APB1ENR_TIM4EN = 2 +32 ,
+    RCC_APB1ENR_TIM5EN = 3 +32 ,
+    RCC_APB1ENR_WWDGEN = 11 + 32 ,
+    RCC_APB1ENR_SPI2EN = 14 + 32 ,
+    RCC_APB1ENR_SPI3EN = 15 + 32 ,
+    RCC_APB1ENR_USART2EN = 17 + 32,
+    RCC_APB1ENR_I2C1EN = 21 + 32,
+    RCC_APB1ENR_I2C2EN = 22 + 32 ,
+    RCC_APB1ENR_I2C3EN = 23 + 32 ,
+    RCC_APB1ENR_PWREN = 28 + 32 ,
 
-// RCC APB2 Peripheral Clock Enable Register (RCC_APB2ENR)
-typedef enum {
-    RCC_APB2ENR_TIM1EN = 0,
-    RCC_APB2ENR_USART1EN = 4,
-    RCC_APB2ENR_USART6EN = 5,
-    RCC_APB2ENR_ADC1EN = 8,
-    RCC_APB2ENR_SDIOEN = 11,
-    RCC_APB2ENR_SPI1EN = 12,
-    RCC_APB2ENR_SPI4EN = 13,
-    RCC_APB2ENR_SYSCFGEN = 14,
-    RCC_APB2ENR_TIM9EN = 16,
-    RCC_APB2ENR_TIM10EN = 17,
-    RCC_APB2ENR_TIM11EN = 18
-} RCC_APB2ENR_Pos_t;
+    // RCC APB2 Peripheral Clock Enable Register (RCC_APB2ENR)
+    RCC_APB2ENR_TIM1EN = 0 + 64 ,
+    RCC_APB2ENR_USART1EN = 4 + 64,
+    RCC_APB2ENR_USART6EN = 5 + 64 ,
+    RCC_APB2ENR_ADC1EN = 8 + 64 ,
+    RCC_APB2ENR_SDIOEN = 11 + 64 ,
+    RCC_APB2ENR_SPI1EN = 12 + 64,
+    RCC_APB2ENR_SPI4EN = 13 + 64 ,
+    RCC_APB2ENR_SYSCFGEN = 14 + 64,
+    RCC_APB2ENR_TIM9EN = 16 + 64 ,
+    RCC_APB2ENR_TIM10EN = 17 + 64,
+    RCC_APB2ENR_TIM11EN = 18 + 64,
+} peripherals_t;
 
 /********************TypeDefines_End*****************/
 

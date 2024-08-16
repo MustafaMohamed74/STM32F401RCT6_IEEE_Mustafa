@@ -5,47 +5,47 @@ Sections:
 Idx Name          Size      VMA       LMA       File off  Algn
   0 .isr_vector   00000194  08000000  08000000  00001000  2**0
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  1 .text         000002c4  08000194  08000194  00001194  2**2
+  1 .text         000008c4  08000194  08000194  00001194  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, CODE
-  2 .rodata       00000000  08000458  08000460  00001460  2**0
+  2 .rodata       00000000  08000a58  08000a60  00001a60  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  3 .ARM.extab    00000000  08000458  08000458  00001460  2**0
+  3 .ARM.extab    00000000  08000a58  08000a58  00001a60  2**0
                   CONTENTS
-  4 .ARM          00000000  08000458  08000458  00001460  2**0
+  4 .ARM          00000000  08000a58  08000a58  00001a60  2**0
                   CONTENTS
-  5 .preinit_array 00000000  08000458  08000460  00001460  2**0
+  5 .preinit_array 00000000  08000a58  08000a60  00001a60  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  6 .init_array   00000004  08000458  08000458  00001458  2**2
+  6 .init_array   00000004  08000a58  08000a58  00001a58  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  7 .fini_array   00000004  0800045c  0800045c  0000145c  2**2
+  7 .fini_array   00000004  08000a5c  08000a5c  00001a5c  2**2
                   CONTENTS, ALLOC, LOAD, READONLY, DATA
-  8 .data         00000000  20000000  20000000  00001460  2**0
+  8 .data         00000000  20000000  20000000  00001a60  2**0
                   CONTENTS, ALLOC, LOAD, DATA
-  9 .bss          0000001c  20000000  08000460  00002000  2**2
+  9 .bss          0000001c  20000000  08000a60  00002000  2**2
                   ALLOC
- 10 ._user_heap_stack 00000604  2000001c  08000460  0000201c  2**0
+ 10 ._user_heap_stack 00000604  2000001c  08000a60  0000201c  2**0
                   ALLOC
- 11 .ARM.attributes 00000030  00000000  00000000  00001460  2**0
+ 11 .ARM.attributes 00000030  00000000  00000000  00001a60  2**0
                   CONTENTS, READONLY
- 12 .debug_info   00000484  00000000  00000000  00001490  2**0
+ 12 .debug_info   0000057f  00000000  00000000  00001a90  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 13 .debug_abbrev 000001be  00000000  00000000  00001914  2**0
+ 13 .debug_abbrev 000001ec  00000000  00000000  0000200f  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 14 .debug_aranges 00000078  00000000  00000000  00001ad8  2**3
+ 14 .debug_aranges 00000090  00000000  00000000  00002200  2**3
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 15 .debug_rnglists 0000004d  00000000  00000000  00001b50  2**0
+ 15 .debug_rnglists 00000060  00000000  00000000  00002290  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 16 .debug_macro  00000be8  00000000  00000000  00001b9d  2**0
+ 16 .debug_macro  00000c30  00000000  00000000  000022f0  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 17 .debug_line   000002eb  00000000  00000000  00002785  2**0
+ 17 .debug_line   000003df  00000000  00000000  00002f20  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 18 .debug_str    000034c9  00000000  00000000  00002a70  2**0
+ 18 .debug_str    000035b4  00000000  00000000  000032ff  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 19 .comment      00000043  00000000  00000000  00005f39  2**0
+ 19 .comment      00000043  00000000  00000000  000068b3  2**0
                   CONTENTS, READONLY
- 20 .debug_frame  000000e0  00000000  00000000  00005f7c  2**2
+ 20 .debug_frame  00000154  00000000  00000000  000068f8  2**2
                   CONTENTS, READONLY, DEBUGGING, OCTETS
- 21 .debug_line_str 0000005e  00000000  00000000  0000605c  2**0
+ 21 .debug_line_str 0000005e  00000000  00000000  00006a4c  2**0
                   CONTENTS, READONLY, DEBUGGING, OCTETS
 
 Disassembly of section .text:
@@ -64,7 +64,7 @@ Disassembly of section .text:
  80001aa:	bd10      	pop	{r4, pc}
  80001ac:	20000000 	.word	0x20000000
  80001b0:	00000000 	.word	0x00000000
- 80001b4:	08000440 	.word	0x08000440
+ 80001b4:	08000a40 	.word	0x08000a40
 
 080001b8 <frame_dummy>:
  80001b8:	b508      	push	{r3, lr}
@@ -76,440 +76,1202 @@ Disassembly of section .text:
  80001c6:	bd08      	pop	{r3, pc}
  80001c8:	00000000 	.word	0x00000000
  80001cc:	20000004 	.word	0x20000004
- 80001d0:	08000440 	.word	0x08000440
+ 80001d0:	08000a40 	.word	0x08000a40
 
 080001d4 <RCC_Init>:
- */
-
-
-#include "RCC_Interface.h"
+/*declare used functions to enhance readability */
+void RCC_PLLM_Config();
+void RCC_PLLN_Config();
+void RCC_PLLP_Config();
 
 void RCC_Init(void){
- 80001d4:	b480      	push	{r7}
- 80001d6:	b083      	sub	sp, #12
+ 80001d4:	b580      	push	{r7, lr}
+ 80001d6:	b082      	sub	sp, #8
  80001d8:	af00      	add	r7, sp, #0
-#if RCC_Clock == RCC_HSE
-	/*Enable clock*/
-	Set_Bit(RCC_Registers->CR,HSEON);
- 80001da:	4b16      	ldr	r3, [pc, #88]	@ (8000234 <RCC_Init+0x60>)
+	/*close other sources*/
+	Clr_Bit(RCC_Registers->CR,PLLON);
+	Clr_Bit(RCC_Registers->CR,HSEON);
+#elif RCC_Clock == RCC_PLL
+	/*Close the PLL to do some configurations*/
+	Clr_Bit(RCC_Registers->CR,PLLON);
+ 80001da:	4b21      	ldr	r3, [pc, #132]	@ (8000260 <RCC_Init+0x8c>)
  80001dc:	681b      	ldr	r3, [r3, #0]
- 80001de:	4a15      	ldr	r2, [pc, #84]	@ (8000234 <RCC_Init+0x60>)
- 80001e0:	f443 3380 	orr.w	r3, r3, #65536	@ 0x10000
+ 80001de:	4a20      	ldr	r2, [pc, #128]	@ (8000260 <RCC_Init+0x8c>)
+ 80001e0:	f023 7380 	bic.w	r3, r3, #16777216	@ 0x1000000
  80001e4:	6013      	str	r3, [r2, #0]
+	Clr_Bit(RCC_Registers->CR,PLLI2SON);
+ 80001e6:	4b1e      	ldr	r3, [pc, #120]	@ (8000260 <RCC_Init+0x8c>)
+ 80001e8:	681b      	ldr	r3, [r3, #0]
+ 80001ea:	4a1d      	ldr	r2, [pc, #116]	@ (8000260 <RCC_Init+0x8c>)
+ 80001ec:	f023 6380 	bic.w	r3, r3, #67108864	@ 0x4000000
+ 80001f0:	6013      	str	r3, [r2, #0]
+	Set_Bit(RCC_Registers->CR,HSION);
+ 80001f2:	4b1b      	ldr	r3, [pc, #108]	@ (8000260 <RCC_Init+0x8c>)
+ 80001f4:	681b      	ldr	r3, [r3, #0]
+ 80001f6:	4a1a      	ldr	r2, [pc, #104]	@ (8000260 <RCC_Init+0x8c>)
+ 80001f8:	f043 0301 	orr.w	r3, r3, #1
+ 80001fc:	6013      	str	r3, [r2, #0]
+	/*Config Our PLL */
+	RCC_PLLM_Config();
+ 80001fe:	f000 fb69 	bl	80008d4 <RCC_PLLM_Config>
+	RCC_PLLN_Config();
+ 8000202:	f000 fb81 	bl	8000908 <RCC_PLLN_Config>
+	RCC_PLLP_Config();
+ 8000206:	f000 fb9b 	bl	8000940 <RCC_PLLP_Config>
+	/*Enable clock*/
+	Set_Bit(RCC_Registers->CR,PLLON);
+ 800020a:	4b15      	ldr	r3, [pc, #84]	@ (8000260 <RCC_Init+0x8c>)
+ 800020c:	681b      	ldr	r3, [r3, #0]
+ 800020e:	4a14      	ldr	r2, [pc, #80]	@ (8000260 <RCC_Init+0x8c>)
+ 8000210:	f043 7380 	orr.w	r3, r3, #16777216	@ 0x1000000
+ 8000214:	6013      	str	r3, [r2, #0]
 	/*wait until it stable*/
-	while(Get_Bit(RCC_Registers->CR,HSERDY));
- 80001e6:	bf00      	nop
- 80001e8:	4b12      	ldr	r3, [pc, #72]	@ (8000234 <RCC_Init+0x60>)
- 80001ea:	681b      	ldr	r3, [r3, #0]
- 80001ec:	f403 3300 	and.w	r3, r3, #131072	@ 0x20000
- 80001f0:	2b00      	cmp	r3, #0
- 80001f2:	d1f9      	bne.n	80001e8 <RCC_Init+0x14>
+	while(Get_Bit(RCC_Registers->CR,PLLRDY));
+ 8000216:	bf00      	nop
+ 8000218:	4b11      	ldr	r3, [pc, #68]	@ (8000260 <RCC_Init+0x8c>)
+ 800021a:	681b      	ldr	r3, [r3, #0]
+ 800021c:	f003 7300 	and.w	r3, r3, #33554432	@ 0x2000000
+ 8000220:	2b00      	cmp	r3, #0
+ 8000222:	d1f9      	bne.n	8000218 <RCC_Init+0x44>
 	/*choose the clock source*/
 	uint32 temp_CFGR = RCC_Registers->CFGR ;
- 80001f4:	4b0f      	ldr	r3, [pc, #60]	@ (8000234 <RCC_Init+0x60>)
- 80001f6:	689b      	ldr	r3, [r3, #8]
- 80001f8:	607b      	str	r3, [r7, #4]
+ 8000224:	4b0e      	ldr	r3, [pc, #56]	@ (8000260 <RCC_Init+0x8c>)
+ 8000226:	689b      	ldr	r3, [r3, #8]
+ 8000228:	607b      	str	r3, [r7, #4]
 	temp_CFGR &=(~((uint32)LS2B_MASK));
- 80001fa:	687b      	ldr	r3, [r7, #4]
- 80001fc:	f023 0303 	bic.w	r3, r3, #3
- 8000200:	607b      	str	r3, [r7, #4]
+ 800022a:	687b      	ldr	r3, [r7, #4]
+ 800022c:	f023 0303 	bic.w	r3, r3, #3
+ 8000230:	607b      	str	r3, [r7, #4]
 	temp_CFGR |= (uint32)CLOCK_Select ;
- 8000202:	687b      	ldr	r3, [r7, #4]
- 8000204:	f043 0301 	orr.w	r3, r3, #1
- 8000208:	607b      	str	r3, [r7, #4]
+ 8000232:	687b      	ldr	r3, [r7, #4]
+ 8000234:	f043 0302 	orr.w	r3, r3, #2
+ 8000238:	607b      	str	r3, [r7, #4]
 	RCC_Registers->CFGR = temp_CFGR;
- 800020a:	4a0a      	ldr	r2, [pc, #40]	@ (8000234 <RCC_Init+0x60>)
- 800020c:	687b      	ldr	r3, [r7, #4]
- 800020e:	6093      	str	r3, [r2, #8]
-	/*close other sources*/
-	Clr_Bit(RCC_Registers->CR,HSION);
- 8000210:	4b08      	ldr	r3, [pc, #32]	@ (8000234 <RCC_Init+0x60>)
- 8000212:	681b      	ldr	r3, [r3, #0]
- 8000214:	4a07      	ldr	r2, [pc, #28]	@ (8000234 <RCC_Init+0x60>)
- 8000216:	f023 0301 	bic.w	r3, r3, #1
- 800021a:	6013      	str	r3, [r2, #0]
-	Clr_Bit(RCC_Registers->CR,PLLON);
- 800021c:	4b05      	ldr	r3, [pc, #20]	@ (8000234 <RCC_Init+0x60>)
- 800021e:	681b      	ldr	r3, [r3, #0]
- 8000220:	4a04      	ldr	r2, [pc, #16]	@ (8000234 <RCC_Init+0x60>)
- 8000222:	f023 7380 	bic.w	r3, r3, #16777216	@ 0x1000000
- 8000226:	6013      	str	r3, [r2, #0]
-	RCC_Registers->CFGR = temp_CFGR;
+ 800023a:	4a09      	ldr	r2, [pc, #36]	@ (8000260 <RCC_Init+0x8c>)
+ 800023c:	687b      	ldr	r3, [r7, #4]
+ 800023e:	6093      	str	r3, [r2, #8]
 	/*close other sources*/
 	Clr_Bit(RCC_Registers->CR,HSEON);
+ 8000240:	4b07      	ldr	r3, [pc, #28]	@ (8000260 <RCC_Init+0x8c>)
+ 8000242:	681b      	ldr	r3, [r3, #0]
+ 8000244:	4a06      	ldr	r2, [pc, #24]	@ (8000260 <RCC_Init+0x8c>)
+ 8000246:	f423 3380 	bic.w	r3, r3, #65536	@ 0x10000
+ 800024a:	6013      	str	r3, [r2, #0]
 	Clr_Bit(RCC_Registers->CR,HSION);
+ 800024c:	4b04      	ldr	r3, [pc, #16]	@ (8000260 <RCC_Init+0x8c>)
+ 800024e:	681b      	ldr	r3, [r3, #0]
+ 8000250:	4a03      	ldr	r2, [pc, #12]	@ (8000260 <RCC_Init+0x8c>)
+ 8000252:	f023 0301 	bic.w	r3, r3, #1
+ 8000256:	6013      	str	r3, [r2, #0]
 #endif
 }
- 8000228:	bf00      	nop
- 800022a:	370c      	adds	r7, #12
- 800022c:	46bd      	mov	sp, r7
- 800022e:	f85d 7b04 	ldr.w	r7, [sp], #4
- 8000232:	4770      	bx	lr
- 8000234:	40023800 	.word	0x40023800
+ 8000258:	bf00      	nop
+ 800025a:	3708      	adds	r7, #8
+ 800025c:	46bd      	mov	sp, r7
+ 800025e:	bd80      	pop	{r7, pc}
+ 8000260:	40023800 	.word	0x40023800
 
-08000238 <RCC_Enable_peripheral>:
-void RCC_Enable_peripheral(uint8 Desired_Bus ,uint8 peripheral){
- 8000238:	b480      	push	{r7}
- 800023a:	b083      	sub	sp, #12
- 800023c:	af00      	add	r7, sp, #0
- 800023e:	4603      	mov	r3, r0
- 8000240:	460a      	mov	r2, r1
- 8000242:	71fb      	strb	r3, [r7, #7]
- 8000244:	4613      	mov	r3, r2
- 8000246:	71bb      	strb	r3, [r7, #6]
+08000264 <RCC_Enable_peripheral>:
+//	Set_Bit(RCC_Registers->APB2ENR , peripheral);
+//	break;
+//}
+//}
 
-switch(Desired_Bus){
- 8000248:	79fb      	ldrb	r3, [r7, #7]
- 800024a:	2b03      	cmp	r3, #3
- 800024c:	d836      	bhi.n	80002bc <RCC_Enable_peripheral+0x84>
- 800024e:	a201      	add	r2, pc, #4	@ (adr r2, 8000254 <RCC_Enable_peripheral+0x1c>)
- 8000250:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
- 8000254:	08000265 	.word	0x08000265
- 8000258:	0800027b 	.word	0x0800027b
- 800025c:	08000291 	.word	0x08000291
- 8000260:	080002a7 	.word	0x080002a7
-case AHP1 :
-	Set_Bit(RCC_Registers->AHB1ENR , peripheral);
- 8000264:	4b18      	ldr	r3, [pc, #96]	@ (80002c8 <RCC_Enable_peripheral+0x90>)
- 8000266:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
- 8000268:	79ba      	ldrb	r2, [r7, #6]
- 800026a:	2101      	movs	r1, #1
- 800026c:	fa01 f202 	lsl.w	r2, r1, r2
- 8000270:	4611      	mov	r1, r2
- 8000272:	4a15      	ldr	r2, [pc, #84]	@ (80002c8 <RCC_Enable_peripheral+0x90>)
- 8000274:	430b      	orrs	r3, r1
- 8000276:	6313      	str	r3, [r2, #48]	@ 0x30
-	break ;
- 8000278:	e020      	b.n	80002bc <RCC_Enable_peripheral+0x84>
-case AHP2 :
-	Set_Bit(RCC_Registers->AHB2ENR , peripheral);
- 800027a:	4b13      	ldr	r3, [pc, #76]	@ (80002c8 <RCC_Enable_peripheral+0x90>)
- 800027c:	6b5b      	ldr	r3, [r3, #52]	@ 0x34
- 800027e:	79ba      	ldrb	r2, [r7, #6]
- 8000280:	2101      	movs	r1, #1
- 8000282:	fa01 f202 	lsl.w	r2, r1, r2
- 8000286:	4611      	mov	r1, r2
- 8000288:	4a0f      	ldr	r2, [pc, #60]	@ (80002c8 <RCC_Enable_peripheral+0x90>)
- 800028a:	430b      	orrs	r3, r1
- 800028c:	6353      	str	r3, [r2, #52]	@ 0x34
-	break;
- 800028e:	e015      	b.n	80002bc <RCC_Enable_peripheral+0x84>
-case APB1 :
-	Set_Bit(RCC_Registers->APB1ENR , peripheral);
- 8000290:	4b0d      	ldr	r3, [pc, #52]	@ (80002c8 <RCC_Enable_peripheral+0x90>)
- 8000292:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
- 8000294:	79ba      	ldrb	r2, [r7, #6]
- 8000296:	2101      	movs	r1, #1
- 8000298:	fa01 f202 	lsl.w	r2, r1, r2
- 800029c:	4611      	mov	r1, r2
- 800029e:	4a0a      	ldr	r2, [pc, #40]	@ (80002c8 <RCC_Enable_peripheral+0x90>)
- 80002a0:	430b      	orrs	r3, r1
- 80002a2:	6413      	str	r3, [r2, #64]	@ 0x40
-	break;
- 80002a4:	e00a      	b.n	80002bc <RCC_Enable_peripheral+0x84>
-case APB2 :
-	Set_Bit(RCC_Registers->APB2ENR , peripheral);
- 80002a6:	4b08      	ldr	r3, [pc, #32]	@ (80002c8 <RCC_Enable_peripheral+0x90>)
- 80002a8:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
- 80002aa:	79ba      	ldrb	r2, [r7, #6]
- 80002ac:	2101      	movs	r1, #1
- 80002ae:	fa01 f202 	lsl.w	r2, r1, r2
- 80002b2:	4611      	mov	r1, r2
- 80002b4:	4a04      	ldr	r2, [pc, #16]	@ (80002c8 <RCC_Enable_peripheral+0x90>)
- 80002b6:	430b      	orrs	r3, r1
- 80002b8:	6453      	str	r3, [r2, #68]	@ 0x44
-	break;
- 80002ba:	bf00      	nop
-}
-}
- 80002bc:	bf00      	nop
- 80002be:	370c      	adds	r7, #12
- 80002c0:	46bd      	mov	sp, r7
- 80002c2:	f85d 7b04 	ldr.w	r7, [sp], #4
- 80002c6:	4770      	bx	lr
- 80002c8:	40023800 	.word	0x40023800
+void RCC_Enable_peripheral(peripherals_t Peripheral){
+ 8000264:	b480      	push	{r7}
+ 8000266:	b083      	sub	sp, #12
+ 8000268:	af00      	add	r7, sp, #0
+ 800026a:	4603      	mov	r3, r0
+ 800026c:	71fb      	strb	r3, [r7, #7]
 
-080002cc <RCC_Disable_peripheral>:
-
-void RCC_Disable_peripheral(uint8 Desired_Bus ,uint8 peripheral){
- 80002cc:	b480      	push	{r7}
- 80002ce:	b083      	sub	sp, #12
- 80002d0:	af00      	add	r7, sp, #0
- 80002d2:	4603      	mov	r3, r0
- 80002d4:	460a      	mov	r2, r1
- 80002d6:	71fb      	strb	r3, [r7, #7]
- 80002d8:	4613      	mov	r3, r2
- 80002da:	71bb      	strb	r3, [r7, #6]
-	switch(Desired_Bus){
- 80002dc:	79fb      	ldrb	r3, [r7, #7]
- 80002de:	2b03      	cmp	r3, #3
- 80002e0:	d83a      	bhi.n	8000358 <RCC_Disable_peripheral+0x8c>
- 80002e2:	a201      	add	r2, pc, #4	@ (adr r2, 80002e8 <RCC_Disable_peripheral+0x1c>)
- 80002e4:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
- 80002e8:	080002f9 	.word	0x080002f9
- 80002ec:	08000311 	.word	0x08000311
- 80002f0:	08000329 	.word	0x08000329
- 80002f4:	08000341 	.word	0x08000341
-	case AHP1 :
-		Clr_Bit(RCC_Registers->AHB1ENR , peripheral);
- 80002f8:	4b1a      	ldr	r3, [pc, #104]	@ (8000364 <RCC_Disable_peripheral+0x98>)
- 80002fa:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
- 80002fc:	79ba      	ldrb	r2, [r7, #6]
- 80002fe:	2101      	movs	r1, #1
- 8000300:	fa01 f202 	lsl.w	r2, r1, r2
- 8000304:	43d2      	mvns	r2, r2
- 8000306:	4611      	mov	r1, r2
- 8000308:	4a16      	ldr	r2, [pc, #88]	@ (8000364 <RCC_Disable_peripheral+0x98>)
- 800030a:	400b      	ands	r3, r1
- 800030c:	6313      	str	r3, [r2, #48]	@ 0x30
-		break ;
- 800030e:	e023      	b.n	8000358 <RCC_Disable_peripheral+0x8c>
-	case AHP2 :
-		Clr_Bit(RCC_Registers->AHB2ENR , peripheral);
- 8000310:	4b14      	ldr	r3, [pc, #80]	@ (8000364 <RCC_Disable_peripheral+0x98>)
- 8000312:	6b5b      	ldr	r3, [r3, #52]	@ 0x34
- 8000314:	79ba      	ldrb	r2, [r7, #6]
- 8000316:	2101      	movs	r1, #1
- 8000318:	fa01 f202 	lsl.w	r2, r1, r2
- 800031c:	43d2      	mvns	r2, r2
- 800031e:	4611      	mov	r1, r2
- 8000320:	4a10      	ldr	r2, [pc, #64]	@ (8000364 <RCC_Disable_peripheral+0x98>)
- 8000322:	400b      	ands	r3, r1
- 8000324:	6353      	str	r3, [r2, #52]	@ 0x34
+	switch (Peripheral) {
+ 800026e:	79fb      	ldrb	r3, [r7, #7]
+ 8000270:	2b52      	cmp	r3, #82	@ 0x52
+ 8000272:	f200 8189 	bhi.w	8000588 <RCC_Enable_peripheral+0x324>
+ 8000276:	a201      	add	r2, pc, #4	@ (adr r2, 800027c <RCC_Enable_peripheral+0x18>)
+ 8000278:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
+ 800027c:	080003c9 	.word	0x080003c9
+ 8000280:	080003d7 	.word	0x080003d7
+ 8000284:	080003e5 	.word	0x080003e5
+ 8000288:	080003f3 	.word	0x080003f3
+ 800028c:	08000401 	.word	0x08000401
+ 8000290:	08000589 	.word	0x08000589
+ 8000294:	08000589 	.word	0x08000589
+ 8000298:	0800040f 	.word	0x0800040f
+ 800029c:	08000589 	.word	0x08000589
+ 80002a0:	08000589 	.word	0x08000589
+ 80002a4:	08000589 	.word	0x08000589
+ 80002a8:	08000589 	.word	0x08000589
+ 80002ac:	0800041d 	.word	0x0800041d
+ 80002b0:	08000589 	.word	0x08000589
+ 80002b4:	08000589 	.word	0x08000589
+ 80002b8:	08000589 	.word	0x08000589
+ 80002bc:	08000589 	.word	0x08000589
+ 80002c0:	08000589 	.word	0x08000589
+ 80002c4:	08000589 	.word	0x08000589
+ 80002c8:	08000589 	.word	0x08000589
+ 80002cc:	08000589 	.word	0x08000589
+ 80002d0:	0800042b 	.word	0x0800042b
+ 80002d4:	08000439 	.word	0x08000439
+ 80002d8:	08000589 	.word	0x08000589
+ 80002dc:	08000589 	.word	0x08000589
+ 80002e0:	08000589 	.word	0x08000589
+ 80002e4:	08000589 	.word	0x08000589
+ 80002e8:	08000589 	.word	0x08000589
+ 80002ec:	08000589 	.word	0x08000589
+ 80002f0:	08000589 	.word	0x08000589
+ 80002f4:	08000589 	.word	0x08000589
+ 80002f8:	08000589 	.word	0x08000589
+ 80002fc:	08000447 	.word	0x08000447
+ 8000300:	08000455 	.word	0x08000455
+ 8000304:	08000463 	.word	0x08000463
+ 8000308:	08000471 	.word	0x08000471
+ 800030c:	08000589 	.word	0x08000589
+ 8000310:	08000589 	.word	0x08000589
+ 8000314:	08000589 	.word	0x08000589
+ 8000318:	08000589 	.word	0x08000589
+ 800031c:	08000589 	.word	0x08000589
+ 8000320:	08000589 	.word	0x08000589
+ 8000324:	08000589 	.word	0x08000589
+ 8000328:	0800047f 	.word	0x0800047f
+ 800032c:	08000589 	.word	0x08000589
+ 8000330:	08000589 	.word	0x08000589
+ 8000334:	0800048d 	.word	0x0800048d
+ 8000338:	0800049b 	.word	0x0800049b
+ 800033c:	08000589 	.word	0x08000589
+ 8000340:	080004a9 	.word	0x080004a9
+ 8000344:	08000589 	.word	0x08000589
+ 8000348:	08000589 	.word	0x08000589
+ 800034c:	08000589 	.word	0x08000589
+ 8000350:	080004b7 	.word	0x080004b7
+ 8000354:	080004c5 	.word	0x080004c5
+ 8000358:	080004d3 	.word	0x080004d3
+ 800035c:	08000589 	.word	0x08000589
+ 8000360:	08000589 	.word	0x08000589
+ 8000364:	08000589 	.word	0x08000589
+ 8000368:	08000589 	.word	0x08000589
+ 800036c:	080004e1 	.word	0x080004e1
+ 8000370:	08000589 	.word	0x08000589
+ 8000374:	08000589 	.word	0x08000589
+ 8000378:	08000589 	.word	0x08000589
+ 800037c:	080004ef 	.word	0x080004ef
+ 8000380:	08000589 	.word	0x08000589
+ 8000384:	08000589 	.word	0x08000589
+ 8000388:	08000589 	.word	0x08000589
+ 800038c:	080004fd 	.word	0x080004fd
+ 8000390:	0800050b 	.word	0x0800050b
+ 8000394:	08000589 	.word	0x08000589
+ 8000398:	08000589 	.word	0x08000589
+ 800039c:	08000519 	.word	0x08000519
+ 80003a0:	08000589 	.word	0x08000589
+ 80003a4:	08000589 	.word	0x08000589
+ 80003a8:	08000527 	.word	0x08000527
+ 80003ac:	08000535 	.word	0x08000535
+ 80003b0:	08000543 	.word	0x08000543
+ 80003b4:	08000551 	.word	0x08000551
+ 80003b8:	08000589 	.word	0x08000589
+ 80003bc:	0800055f 	.word	0x0800055f
+ 80003c0:	0800056d 	.word	0x0800056d
+ 80003c4:	0800057b 	.word	0x0800057b
+	// RCC AHB1 Peripheral Clock Enable Register (RCC_AHB1ENR)
+	case RCC_AHB1ENR_GPIOA_EN:
+		Set_Bit(RCC_Registers->AHB1ENR, RCC_AHB1ENR_GPIOA_EN % 32);
+ 80003c8:	4b73      	ldr	r3, [pc, #460]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 80003ca:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
+ 80003cc:	4a72      	ldr	r2, [pc, #456]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 80003ce:	f043 0301 	orr.w	r3, r3, #1
+ 80003d2:	6313      	str	r3, [r2, #48]	@ 0x30
 		break;
- 8000326:	e017      	b.n	8000358 <RCC_Disable_peripheral+0x8c>
-	case APB1 :
-		Clr_Bit(RCC_Registers->APB1ENR , peripheral);
- 8000328:	4b0e      	ldr	r3, [pc, #56]	@ (8000364 <RCC_Disable_peripheral+0x98>)
- 800032a:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
- 800032c:	79ba      	ldrb	r2, [r7, #6]
- 800032e:	2101      	movs	r1, #1
- 8000330:	fa01 f202 	lsl.w	r2, r1, r2
- 8000334:	43d2      	mvns	r2, r2
- 8000336:	4611      	mov	r1, r2
- 8000338:	4a0a      	ldr	r2, [pc, #40]	@ (8000364 <RCC_Disable_peripheral+0x98>)
- 800033a:	400b      	ands	r3, r1
- 800033c:	6413      	str	r3, [r2, #64]	@ 0x40
+ 80003d4:	e0d9      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_AHB1ENR_GPIOB_EN:
+		Set_Bit(RCC_Registers->AHB1ENR, RCC_AHB1ENR_GPIOB_EN % 32);
+ 80003d6:	4b70      	ldr	r3, [pc, #448]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 80003d8:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
+ 80003da:	4a6f      	ldr	r2, [pc, #444]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 80003dc:	f043 0302 	orr.w	r3, r3, #2
+ 80003e0:	6313      	str	r3, [r2, #48]	@ 0x30
 		break;
- 800033e:	e00b      	b.n	8000358 <RCC_Disable_peripheral+0x8c>
-	case APB2 :
-		Clr_Bit(RCC_Registers->APB2ENR , peripheral);
- 8000340:	4b08      	ldr	r3, [pc, #32]	@ (8000364 <RCC_Disable_peripheral+0x98>)
- 8000342:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
- 8000344:	79ba      	ldrb	r2, [r7, #6]
- 8000346:	2101      	movs	r1, #1
- 8000348:	fa01 f202 	lsl.w	r2, r1, r2
- 800034c:	43d2      	mvns	r2, r2
- 800034e:	4611      	mov	r1, r2
- 8000350:	4a04      	ldr	r2, [pc, #16]	@ (8000364 <RCC_Disable_peripheral+0x98>)
- 8000352:	400b      	ands	r3, r1
- 8000354:	6453      	str	r3, [r2, #68]	@ 0x44
+ 80003e2:	e0d2      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_AHB1ENR_GPIOC_EN:
+		Set_Bit(RCC_Registers->AHB1ENR, RCC_AHB1ENR_GPIOC_EN % 32);
+ 80003e4:	4b6c      	ldr	r3, [pc, #432]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 80003e6:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
+ 80003e8:	4a6b      	ldr	r2, [pc, #428]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 80003ea:	f043 0304 	orr.w	r3, r3, #4
+ 80003ee:	6313      	str	r3, [r2, #48]	@ 0x30
 		break;
- 8000356:	bf00      	nop
+ 80003f0:	e0cb      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_AHB1ENR_GPIOD_EN:
+		Set_Bit(RCC_Registers->AHB1ENR, RCC_AHB1ENR_GPIOD_EN % 32);
+ 80003f2:	4b69      	ldr	r3, [pc, #420]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 80003f4:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
+ 80003f6:	4a68      	ldr	r2, [pc, #416]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 80003f8:	f043 0308 	orr.w	r3, r3, #8
+ 80003fc:	6313      	str	r3, [r2, #48]	@ 0x30
+		break;
+ 80003fe:	e0c4      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_AHB1ENR_GPIOE_EN:
+		Set_Bit(RCC_Registers->AHB1ENR, RCC_AHB1ENR_GPIOE_EN % 32);
+ 8000400:	4b65      	ldr	r3, [pc, #404]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 8000402:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
+ 8000404:	4a64      	ldr	r2, [pc, #400]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 8000406:	f043 0310 	orr.w	r3, r3, #16
+ 800040a:	6313      	str	r3, [r2, #48]	@ 0x30
+		break;
+ 800040c:	e0bd      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_AHB1ENR_GPIOH_EN:
+		Set_Bit(RCC_Registers->AHB1ENR, RCC_AHB1ENR_GPIOH_EN % 32);
+ 800040e:	4b62      	ldr	r3, [pc, #392]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 8000410:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
+ 8000412:	4a61      	ldr	r2, [pc, #388]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 8000414:	f043 0380 	orr.w	r3, r3, #128	@ 0x80
+ 8000418:	6313      	str	r3, [r2, #48]	@ 0x30
+		break;
+ 800041a:	e0b6      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_AHB1ENR_CRCEN:
+		Set_Bit(RCC_Registers->AHB1ENR, RCC_AHB1ENR_CRCEN % 32);
+ 800041c:	4b5e      	ldr	r3, [pc, #376]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 800041e:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
+ 8000420:	4a5d      	ldr	r2, [pc, #372]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 8000422:	f443 5380 	orr.w	r3, r3, #4096	@ 0x1000
+ 8000426:	6313      	str	r3, [r2, #48]	@ 0x30
+		break;
+ 8000428:	e0af      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_AHB1ENR_DMA1EN:
+		Set_Bit(RCC_Registers->AHB1ENR, RCC_AHB1ENR_DMA1EN % 32);
+ 800042a:	4b5b      	ldr	r3, [pc, #364]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 800042c:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
+ 800042e:	4a5a      	ldr	r2, [pc, #360]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 8000430:	f443 1300 	orr.w	r3, r3, #2097152	@ 0x200000
+ 8000434:	6313      	str	r3, [r2, #48]	@ 0x30
+		break;
+ 8000436:	e0a8      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_AHB1ENR_DMA2EN:
+		Set_Bit(RCC_Registers->AHB1ENR, RCC_AHB1ENR_DMA2EN % 32);
+ 8000438:	4b57      	ldr	r3, [pc, #348]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 800043a:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
+ 800043c:	4a56      	ldr	r2, [pc, #344]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 800043e:	f443 0380 	orr.w	r3, r3, #4194304	@ 0x400000
+ 8000442:	6313      	str	r3, [r2, #48]	@ 0x30
+		break;
+ 8000444:	e0a1      	b.n	800058a <RCC_Enable_peripheral+0x326>
+
+		// RCC APB1 Peripheral Clock Enable Register (RCC_APB1ENR)
+	case RCC_APB1ENR_TIM2EN:
+		Set_Bit(RCC_Registers->APB1ENR, RCC_APB1ENR_TIM2EN % 32);
+ 8000446:	4b54      	ldr	r3, [pc, #336]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 8000448:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 800044a:	4a53      	ldr	r2, [pc, #332]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 800044c:	f043 0301 	orr.w	r3, r3, #1
+ 8000450:	6413      	str	r3, [r2, #64]	@ 0x40
+		break;
+ 8000452:	e09a      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_APB1ENR_TIM3EN:
+		Set_Bit(RCC_Registers->APB1ENR, RCC_APB1ENR_TIM3EN % 32);
+ 8000454:	4b50      	ldr	r3, [pc, #320]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 8000456:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 8000458:	4a4f      	ldr	r2, [pc, #316]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 800045a:	f043 0302 	orr.w	r3, r3, #2
+ 800045e:	6413      	str	r3, [r2, #64]	@ 0x40
+		break;
+ 8000460:	e093      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_APB1ENR_TIM4EN:
+		Set_Bit(RCC_Registers->APB1ENR, RCC_APB1ENR_TIM4EN % 32);
+ 8000462:	4b4d      	ldr	r3, [pc, #308]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 8000464:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 8000466:	4a4c      	ldr	r2, [pc, #304]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 8000468:	f043 0304 	orr.w	r3, r3, #4
+ 800046c:	6413      	str	r3, [r2, #64]	@ 0x40
+		break;
+ 800046e:	e08c      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_APB1ENR_TIM5EN:
+		Set_Bit(RCC_Registers->APB1ENR, RCC_APB1ENR_TIM5EN % 32);
+ 8000470:	4b49      	ldr	r3, [pc, #292]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 8000472:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 8000474:	4a48      	ldr	r2, [pc, #288]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 8000476:	f043 0308 	orr.w	r3, r3, #8
+ 800047a:	6413      	str	r3, [r2, #64]	@ 0x40
+		break;
+ 800047c:	e085      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_APB1ENR_WWDGEN:
+		Set_Bit(RCC_Registers->APB1ENR, RCC_APB1ENR_WWDGEN % 32);
+ 800047e:	4b46      	ldr	r3, [pc, #280]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 8000480:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 8000482:	4a45      	ldr	r2, [pc, #276]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 8000484:	f443 6300 	orr.w	r3, r3, #2048	@ 0x800
+ 8000488:	6413      	str	r3, [r2, #64]	@ 0x40
+		break;
+ 800048a:	e07e      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_APB1ENR_SPI2EN:
+		Set_Bit(RCC_Registers->APB1ENR, RCC_APB1ENR_SPI2EN % 32);
+ 800048c:	4b42      	ldr	r3, [pc, #264]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 800048e:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 8000490:	4a41      	ldr	r2, [pc, #260]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 8000492:	f443 4380 	orr.w	r3, r3, #16384	@ 0x4000
+ 8000496:	6413      	str	r3, [r2, #64]	@ 0x40
+		break;
+ 8000498:	e077      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_APB1ENR_SPI3EN:
+		Set_Bit(RCC_Registers->APB1ENR, RCC_APB1ENR_SPI3EN % 32);
+ 800049a:	4b3f      	ldr	r3, [pc, #252]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 800049c:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 800049e:	4a3e      	ldr	r2, [pc, #248]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 80004a0:	f443 4300 	orr.w	r3, r3, #32768	@ 0x8000
+ 80004a4:	6413      	str	r3, [r2, #64]	@ 0x40
+		break;
+ 80004a6:	e070      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_APB1ENR_USART2EN:
+		Set_Bit(RCC_Registers->APB1ENR, RCC_APB1ENR_USART2EN % 32);
+ 80004a8:	4b3b      	ldr	r3, [pc, #236]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 80004aa:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 80004ac:	4a3a      	ldr	r2, [pc, #232]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 80004ae:	f443 3300 	orr.w	r3, r3, #131072	@ 0x20000
+ 80004b2:	6413      	str	r3, [r2, #64]	@ 0x40
+		break;
+ 80004b4:	e069      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_APB1ENR_I2C1EN:
+		Set_Bit(RCC_Registers->APB1ENR, RCC_APB1ENR_I2C1EN % 32);
+ 80004b6:	4b38      	ldr	r3, [pc, #224]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 80004b8:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 80004ba:	4a37      	ldr	r2, [pc, #220]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 80004bc:	f443 1300 	orr.w	r3, r3, #2097152	@ 0x200000
+ 80004c0:	6413      	str	r3, [r2, #64]	@ 0x40
+		break;
+ 80004c2:	e062      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_APB1ENR_I2C2EN:
+		Set_Bit(RCC_Registers->APB1ENR, RCC_APB1ENR_I2C2EN % 32);
+ 80004c4:	4b34      	ldr	r3, [pc, #208]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 80004c6:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 80004c8:	4a33      	ldr	r2, [pc, #204]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 80004ca:	f443 0380 	orr.w	r3, r3, #4194304	@ 0x400000
+ 80004ce:	6413      	str	r3, [r2, #64]	@ 0x40
+		break;
+ 80004d0:	e05b      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_APB1ENR_I2C3EN:
+		Set_Bit(RCC_Registers->APB1ENR, RCC_APB1ENR_I2C3EN % 32);
+ 80004d2:	4b31      	ldr	r3, [pc, #196]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 80004d4:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 80004d6:	4a30      	ldr	r2, [pc, #192]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 80004d8:	f443 0300 	orr.w	r3, r3, #8388608	@ 0x800000
+ 80004dc:	6413      	str	r3, [r2, #64]	@ 0x40
+		break;
+ 80004de:	e054      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_APB1ENR_PWREN:
+		Set_Bit(RCC_Registers->APB1ENR, RCC_APB1ENR_PWREN % 32);
+ 80004e0:	4b2d      	ldr	r3, [pc, #180]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 80004e2:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 80004e4:	4a2c      	ldr	r2, [pc, #176]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 80004e6:	f043 5380 	orr.w	r3, r3, #268435456	@ 0x10000000
+ 80004ea:	6413      	str	r3, [r2, #64]	@ 0x40
+		break;
+ 80004ec:	e04d      	b.n	800058a <RCC_Enable_peripheral+0x326>
+
+		// RCC APB2 Peripheral Clock Enable Register (RCC_APB2ENR)
+	case RCC_APB2ENR_TIM1EN:
+		Set_Bit(RCC_Registers->APB2ENR, RCC_APB2ENR_TIM1EN % 32);
+ 80004ee:	4b2a      	ldr	r3, [pc, #168]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 80004f0:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 80004f2:	4a29      	ldr	r2, [pc, #164]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 80004f4:	f043 0301 	orr.w	r3, r3, #1
+ 80004f8:	6453      	str	r3, [r2, #68]	@ 0x44
+		break;
+ 80004fa:	e046      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_APB2ENR_USART1EN:
+		Set_Bit(RCC_Registers->APB2ENR, RCC_APB2ENR_USART1EN % 32);
+ 80004fc:	4b26      	ldr	r3, [pc, #152]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 80004fe:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 8000500:	4a25      	ldr	r2, [pc, #148]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 8000502:	f043 0310 	orr.w	r3, r3, #16
+ 8000506:	6453      	str	r3, [r2, #68]	@ 0x44
+		break;
+ 8000508:	e03f      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_APB2ENR_USART6EN:
+		Set_Bit(RCC_Registers->APB2ENR, RCC_APB2ENR_USART6EN % 32);
+ 800050a:	4b23      	ldr	r3, [pc, #140]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 800050c:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 800050e:	4a22      	ldr	r2, [pc, #136]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 8000510:	f043 0320 	orr.w	r3, r3, #32
+ 8000514:	6453      	str	r3, [r2, #68]	@ 0x44
+		break;
+ 8000516:	e038      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_APB2ENR_ADC1EN:
+		Set_Bit(RCC_Registers->APB2ENR, RCC_APB2ENR_ADC1EN % 32);
+ 8000518:	4b1f      	ldr	r3, [pc, #124]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 800051a:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 800051c:	4a1e      	ldr	r2, [pc, #120]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 800051e:	f443 7380 	orr.w	r3, r3, #256	@ 0x100
+ 8000522:	6453      	str	r3, [r2, #68]	@ 0x44
+		break;
+ 8000524:	e031      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_APB2ENR_SDIOEN:
+		Set_Bit(RCC_Registers->APB2ENR, RCC_APB2ENR_SDIOEN % 32);
+ 8000526:	4b1c      	ldr	r3, [pc, #112]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 8000528:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 800052a:	4a1b      	ldr	r2, [pc, #108]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 800052c:	f443 6300 	orr.w	r3, r3, #2048	@ 0x800
+ 8000530:	6453      	str	r3, [r2, #68]	@ 0x44
+		break;
+ 8000532:	e02a      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_APB2ENR_SPI1EN:
+		Set_Bit(RCC_Registers->APB2ENR, RCC_APB2ENR_SPI1EN % 32);
+ 8000534:	4b18      	ldr	r3, [pc, #96]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 8000536:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 8000538:	4a17      	ldr	r2, [pc, #92]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 800053a:	f443 5380 	orr.w	r3, r3, #4096	@ 0x1000
+ 800053e:	6453      	str	r3, [r2, #68]	@ 0x44
+		break;
+ 8000540:	e023      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_APB2ENR_SPI4EN:
+		Set_Bit(RCC_Registers->APB2ENR, RCC_APB2ENR_SPI4EN % 32);
+ 8000542:	4b15      	ldr	r3, [pc, #84]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 8000544:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 8000546:	4a14      	ldr	r2, [pc, #80]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 8000548:	f443 5300 	orr.w	r3, r3, #8192	@ 0x2000
+ 800054c:	6453      	str	r3, [r2, #68]	@ 0x44
+		break;
+ 800054e:	e01c      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_APB2ENR_SYSCFGEN:
+		Set_Bit(RCC_Registers->APB2ENR, RCC_APB2ENR_SYSCFGEN % 32);
+ 8000550:	4b11      	ldr	r3, [pc, #68]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 8000552:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 8000554:	4a10      	ldr	r2, [pc, #64]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 8000556:	f443 4380 	orr.w	r3, r3, #16384	@ 0x4000
+ 800055a:	6453      	str	r3, [r2, #68]	@ 0x44
+		break;
+ 800055c:	e015      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_APB2ENR_TIM9EN:
+		Set_Bit(RCC_Registers->APB2ENR, RCC_APB2ENR_TIM9EN % 32);
+ 800055e:	4b0e      	ldr	r3, [pc, #56]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 8000560:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 8000562:	4a0d      	ldr	r2, [pc, #52]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 8000564:	f443 3380 	orr.w	r3, r3, #65536	@ 0x10000
+ 8000568:	6453      	str	r3, [r2, #68]	@ 0x44
+		break;
+ 800056a:	e00e      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_APB2ENR_TIM10EN:
+		Set_Bit(RCC_Registers->APB2ENR, RCC_APB2ENR_TIM10EN % 32);
+ 800056c:	4b0a      	ldr	r3, [pc, #40]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 800056e:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 8000570:	4a09      	ldr	r2, [pc, #36]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 8000572:	f443 3300 	orr.w	r3, r3, #131072	@ 0x20000
+ 8000576:	6453      	str	r3, [r2, #68]	@ 0x44
+		break;
+ 8000578:	e007      	b.n	800058a <RCC_Enable_peripheral+0x326>
+	case RCC_APB2ENR_TIM11EN:
+		Set_Bit(RCC_Registers->APB2ENR, RCC_APB2ENR_TIM11EN % 32);
+ 800057a:	4b07      	ldr	r3, [pc, #28]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 800057c:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 800057e:	4a06      	ldr	r2, [pc, #24]	@ (8000598 <RCC_Enable_peripheral+0x334>)
+ 8000580:	f443 2380 	orr.w	r3, r3, #262144	@ 0x40000
+ 8000584:	6453      	str	r3, [r2, #68]	@ 0x44
+		break;
+ 8000586:	e000      	b.n	800058a <RCC_Enable_peripheral+0x326>
+
+	default:
+		// Handle unknown cases if necessary
+		break;
+ 8000588:	bf00      	nop
 	}
 }
- 8000358:	bf00      	nop
- 800035a:	370c      	adds	r7, #12
- 800035c:	46bd      	mov	sp, r7
- 800035e:	f85d 7b04 	ldr.w	r7, [sp], #4
- 8000362:	4770      	bx	lr
- 8000364:	40023800 	.word	0x40023800
+ 800058a:	bf00      	nop
+ 800058c:	370c      	adds	r7, #12
+ 800058e:	46bd      	mov	sp, r7
+ 8000590:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000594:	4770      	bx	lr
+ 8000596:	bf00      	nop
+ 8000598:	40023800 	.word	0x40023800
 
-08000368 <main>:
+0800059c <RCC_Disable_peripheral>:
+//		Clr_Bit(RCC_Registers->APB2ENR , peripheral);
+//		break;
+//	}
+//}
+
+void RCC_Disable_peripheral(peripherals_t Peripheral){
+ 800059c:	b480      	push	{r7}
+ 800059e:	b083      	sub	sp, #12
+ 80005a0:	af00      	add	r7, sp, #0
+ 80005a2:	4603      	mov	r3, r0
+ 80005a4:	71fb      	strb	r3, [r7, #7]
+
+switch (Peripheral) {
+ 80005a6:	79fb      	ldrb	r3, [r7, #7]
+ 80005a8:	2b52      	cmp	r3, #82	@ 0x52
+ 80005aa:	f200 8189 	bhi.w	80008c0 <RCC_Disable_peripheral+0x324>
+ 80005ae:	a201      	add	r2, pc, #4	@ (adr r2, 80005b4 <RCC_Disable_peripheral+0x18>)
+ 80005b0:	f852 f023 	ldr.w	pc, [r2, r3, lsl #2]
+ 80005b4:	08000701 	.word	0x08000701
+ 80005b8:	0800070f 	.word	0x0800070f
+ 80005bc:	0800071d 	.word	0x0800071d
+ 80005c0:	0800072b 	.word	0x0800072b
+ 80005c4:	08000739 	.word	0x08000739
+ 80005c8:	080008c1 	.word	0x080008c1
+ 80005cc:	080008c1 	.word	0x080008c1
+ 80005d0:	08000747 	.word	0x08000747
+ 80005d4:	080008c1 	.word	0x080008c1
+ 80005d8:	080008c1 	.word	0x080008c1
+ 80005dc:	080008c1 	.word	0x080008c1
+ 80005e0:	080008c1 	.word	0x080008c1
+ 80005e4:	08000755 	.word	0x08000755
+ 80005e8:	080008c1 	.word	0x080008c1
+ 80005ec:	080008c1 	.word	0x080008c1
+ 80005f0:	080008c1 	.word	0x080008c1
+ 80005f4:	080008c1 	.word	0x080008c1
+ 80005f8:	080008c1 	.word	0x080008c1
+ 80005fc:	080008c1 	.word	0x080008c1
+ 8000600:	080008c1 	.word	0x080008c1
+ 8000604:	080008c1 	.word	0x080008c1
+ 8000608:	08000763 	.word	0x08000763
+ 800060c:	08000771 	.word	0x08000771
+ 8000610:	080008c1 	.word	0x080008c1
+ 8000614:	080008c1 	.word	0x080008c1
+ 8000618:	080008c1 	.word	0x080008c1
+ 800061c:	080008c1 	.word	0x080008c1
+ 8000620:	080008c1 	.word	0x080008c1
+ 8000624:	080008c1 	.word	0x080008c1
+ 8000628:	080008c1 	.word	0x080008c1
+ 800062c:	080008c1 	.word	0x080008c1
+ 8000630:	080008c1 	.word	0x080008c1
+ 8000634:	0800077f 	.word	0x0800077f
+ 8000638:	0800078d 	.word	0x0800078d
+ 800063c:	0800079b 	.word	0x0800079b
+ 8000640:	080007a9 	.word	0x080007a9
+ 8000644:	080008c1 	.word	0x080008c1
+ 8000648:	080008c1 	.word	0x080008c1
+ 800064c:	080008c1 	.word	0x080008c1
+ 8000650:	080008c1 	.word	0x080008c1
+ 8000654:	080008c1 	.word	0x080008c1
+ 8000658:	080008c1 	.word	0x080008c1
+ 800065c:	080008c1 	.word	0x080008c1
+ 8000660:	080007b7 	.word	0x080007b7
+ 8000664:	080008c1 	.word	0x080008c1
+ 8000668:	080008c1 	.word	0x080008c1
+ 800066c:	080007c5 	.word	0x080007c5
+ 8000670:	080007d3 	.word	0x080007d3
+ 8000674:	080008c1 	.word	0x080008c1
+ 8000678:	080007e1 	.word	0x080007e1
+ 800067c:	080008c1 	.word	0x080008c1
+ 8000680:	080008c1 	.word	0x080008c1
+ 8000684:	080008c1 	.word	0x080008c1
+ 8000688:	080007ef 	.word	0x080007ef
+ 800068c:	080007fd 	.word	0x080007fd
+ 8000690:	0800080b 	.word	0x0800080b
+ 8000694:	080008c1 	.word	0x080008c1
+ 8000698:	080008c1 	.word	0x080008c1
+ 800069c:	080008c1 	.word	0x080008c1
+ 80006a0:	080008c1 	.word	0x080008c1
+ 80006a4:	08000819 	.word	0x08000819
+ 80006a8:	080008c1 	.word	0x080008c1
+ 80006ac:	080008c1 	.word	0x080008c1
+ 80006b0:	080008c1 	.word	0x080008c1
+ 80006b4:	08000827 	.word	0x08000827
+ 80006b8:	080008c1 	.word	0x080008c1
+ 80006bc:	080008c1 	.word	0x080008c1
+ 80006c0:	080008c1 	.word	0x080008c1
+ 80006c4:	08000835 	.word	0x08000835
+ 80006c8:	08000843 	.word	0x08000843
+ 80006cc:	080008c1 	.word	0x080008c1
+ 80006d0:	080008c1 	.word	0x080008c1
+ 80006d4:	08000851 	.word	0x08000851
+ 80006d8:	080008c1 	.word	0x080008c1
+ 80006dc:	080008c1 	.word	0x080008c1
+ 80006e0:	0800085f 	.word	0x0800085f
+ 80006e4:	0800086d 	.word	0x0800086d
+ 80006e8:	0800087b 	.word	0x0800087b
+ 80006ec:	08000889 	.word	0x08000889
+ 80006f0:	080008c1 	.word	0x080008c1
+ 80006f4:	08000897 	.word	0x08000897
+ 80006f8:	080008a5 	.word	0x080008a5
+ 80006fc:	080008b3 	.word	0x080008b3
+	// RCC AHB1 Peripheral Clock Enable Register (RCC_AHB1ENR % 32 )
+	case RCC_AHB1ENR_GPIOA_EN:
+		Clr_Bit(RCC_Registers->AHB1ENR, RCC_AHB1ENR_GPIOA_EN % 32 );
+ 8000700:	4b73      	ldr	r3, [pc, #460]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 8000702:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
+ 8000704:	4a72      	ldr	r2, [pc, #456]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 8000706:	f023 0301 	bic.w	r3, r3, #1
+ 800070a:	6313      	str	r3, [r2, #48]	@ 0x30
+		break;
+ 800070c:	e0d9      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_AHB1ENR_GPIOB_EN:
+		Clr_Bit(RCC_Registers->AHB1ENR, RCC_AHB1ENR_GPIOB_EN % 32 );
+ 800070e:	4b70      	ldr	r3, [pc, #448]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 8000710:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
+ 8000712:	4a6f      	ldr	r2, [pc, #444]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 8000714:	f023 0302 	bic.w	r3, r3, #2
+ 8000718:	6313      	str	r3, [r2, #48]	@ 0x30
+		break;
+ 800071a:	e0d2      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_AHB1ENR_GPIOC_EN:
+		Clr_Bit(RCC_Registers->AHB1ENR, RCC_AHB1ENR_GPIOC_EN % 32 );
+ 800071c:	4b6c      	ldr	r3, [pc, #432]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 800071e:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
+ 8000720:	4a6b      	ldr	r2, [pc, #428]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 8000722:	f023 0304 	bic.w	r3, r3, #4
+ 8000726:	6313      	str	r3, [r2, #48]	@ 0x30
+		break;
+ 8000728:	e0cb      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_AHB1ENR_GPIOD_EN:
+		Clr_Bit(RCC_Registers->AHB1ENR, RCC_AHB1ENR_GPIOD_EN % 32 );
+ 800072a:	4b69      	ldr	r3, [pc, #420]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 800072c:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
+ 800072e:	4a68      	ldr	r2, [pc, #416]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 8000730:	f023 0308 	bic.w	r3, r3, #8
+ 8000734:	6313      	str	r3, [r2, #48]	@ 0x30
+		break;
+ 8000736:	e0c4      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_AHB1ENR_GPIOE_EN:
+		Clr_Bit(RCC_Registers->AHB1ENR, RCC_AHB1ENR_GPIOE_EN % 32 );
+ 8000738:	4b65      	ldr	r3, [pc, #404]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 800073a:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
+ 800073c:	4a64      	ldr	r2, [pc, #400]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 800073e:	f023 0310 	bic.w	r3, r3, #16
+ 8000742:	6313      	str	r3, [r2, #48]	@ 0x30
+		break;
+ 8000744:	e0bd      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_AHB1ENR_GPIOH_EN:
+		Clr_Bit(RCC_Registers->AHB1ENR, RCC_AHB1ENR_GPIOH_EN % 32 );
+ 8000746:	4b62      	ldr	r3, [pc, #392]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 8000748:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
+ 800074a:	4a61      	ldr	r2, [pc, #388]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 800074c:	f023 0380 	bic.w	r3, r3, #128	@ 0x80
+ 8000750:	6313      	str	r3, [r2, #48]	@ 0x30
+		break;
+ 8000752:	e0b6      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_AHB1ENR_CRCEN:
+		Clr_Bit(RCC_Registers->AHB1ENR, RCC_AHB1ENR_CRCEN % 32 );
+ 8000754:	4b5e      	ldr	r3, [pc, #376]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 8000756:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
+ 8000758:	4a5d      	ldr	r2, [pc, #372]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 800075a:	f423 5380 	bic.w	r3, r3, #4096	@ 0x1000
+ 800075e:	6313      	str	r3, [r2, #48]	@ 0x30
+		break;
+ 8000760:	e0af      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_AHB1ENR_DMA1EN:
+		Clr_Bit(RCC_Registers->AHB1ENR, RCC_AHB1ENR_DMA1EN % 32 );
+ 8000762:	4b5b      	ldr	r3, [pc, #364]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 8000764:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
+ 8000766:	4a5a      	ldr	r2, [pc, #360]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 8000768:	f423 1300 	bic.w	r3, r3, #2097152	@ 0x200000
+ 800076c:	6313      	str	r3, [r2, #48]	@ 0x30
+		break;
+ 800076e:	e0a8      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_AHB1ENR_DMA2EN:
+		Clr_Bit(RCC_Registers->AHB1ENR, RCC_AHB1ENR_DMA2EN % 32 );
+ 8000770:	4b57      	ldr	r3, [pc, #348]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 8000772:	6b1b      	ldr	r3, [r3, #48]	@ 0x30
+ 8000774:	4a56      	ldr	r2, [pc, #344]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 8000776:	f423 0380 	bic.w	r3, r3, #4194304	@ 0x400000
+ 800077a:	6313      	str	r3, [r2, #48]	@ 0x30
+		break;
+ 800077c:	e0a1      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+
+		// RCC APB1 Peripheral Clock Enable Register (RCC_APB1ENR % 32 )
+	case RCC_APB1ENR_TIM2EN:
+		Clr_Bit(RCC_Registers->APB1ENR, RCC_APB1ENR_TIM2EN % 32 );
+ 800077e:	4b54      	ldr	r3, [pc, #336]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 8000780:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 8000782:	4a53      	ldr	r2, [pc, #332]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 8000784:	f023 0301 	bic.w	r3, r3, #1
+ 8000788:	6413      	str	r3, [r2, #64]	@ 0x40
+		break;
+ 800078a:	e09a      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_APB1ENR_TIM3EN:
+		Clr_Bit(RCC_Registers->APB1ENR, RCC_APB1ENR_TIM3EN % 32 );
+ 800078c:	4b50      	ldr	r3, [pc, #320]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 800078e:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 8000790:	4a4f      	ldr	r2, [pc, #316]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 8000792:	f023 0302 	bic.w	r3, r3, #2
+ 8000796:	6413      	str	r3, [r2, #64]	@ 0x40
+		break;
+ 8000798:	e093      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_APB1ENR_TIM4EN:
+		Clr_Bit(RCC_Registers->APB1ENR, RCC_APB1ENR_TIM4EN % 32 );
+ 800079a:	4b4d      	ldr	r3, [pc, #308]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 800079c:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 800079e:	4a4c      	ldr	r2, [pc, #304]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 80007a0:	f023 0304 	bic.w	r3, r3, #4
+ 80007a4:	6413      	str	r3, [r2, #64]	@ 0x40
+		break;
+ 80007a6:	e08c      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_APB1ENR_TIM5EN:
+		Clr_Bit(RCC_Registers->APB1ENR, RCC_APB1ENR_TIM5EN % 32 );
+ 80007a8:	4b49      	ldr	r3, [pc, #292]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 80007aa:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 80007ac:	4a48      	ldr	r2, [pc, #288]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 80007ae:	f023 0308 	bic.w	r3, r3, #8
+ 80007b2:	6413      	str	r3, [r2, #64]	@ 0x40
+		break;
+ 80007b4:	e085      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_APB1ENR_WWDGEN:
+		Clr_Bit(RCC_Registers->APB1ENR, RCC_APB1ENR_WWDGEN % 32 );
+ 80007b6:	4b46      	ldr	r3, [pc, #280]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 80007b8:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 80007ba:	4a45      	ldr	r2, [pc, #276]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 80007bc:	f423 6300 	bic.w	r3, r3, #2048	@ 0x800
+ 80007c0:	6413      	str	r3, [r2, #64]	@ 0x40
+		break;
+ 80007c2:	e07e      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_APB1ENR_SPI2EN:
+		Clr_Bit(RCC_Registers->APB1ENR, RCC_APB1ENR_SPI2EN % 32 );
+ 80007c4:	4b42      	ldr	r3, [pc, #264]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 80007c6:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 80007c8:	4a41      	ldr	r2, [pc, #260]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 80007ca:	f423 4380 	bic.w	r3, r3, #16384	@ 0x4000
+ 80007ce:	6413      	str	r3, [r2, #64]	@ 0x40
+		break;
+ 80007d0:	e077      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_APB1ENR_SPI3EN:
+		Clr_Bit(RCC_Registers->APB1ENR, RCC_APB1ENR_SPI3EN % 32 );
+ 80007d2:	4b3f      	ldr	r3, [pc, #252]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 80007d4:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 80007d6:	4a3e      	ldr	r2, [pc, #248]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 80007d8:	f423 4300 	bic.w	r3, r3, #32768	@ 0x8000
+ 80007dc:	6413      	str	r3, [r2, #64]	@ 0x40
+		break;
+ 80007de:	e070      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_APB1ENR_USART2EN:
+		Clr_Bit(RCC_Registers->APB1ENR, RCC_APB1ENR_USART2EN % 32 );
+ 80007e0:	4b3b      	ldr	r3, [pc, #236]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 80007e2:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 80007e4:	4a3a      	ldr	r2, [pc, #232]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 80007e6:	f423 3300 	bic.w	r3, r3, #131072	@ 0x20000
+ 80007ea:	6413      	str	r3, [r2, #64]	@ 0x40
+		break;
+ 80007ec:	e069      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_APB1ENR_I2C1EN:
+		Clr_Bit(RCC_Registers->APB1ENR, RCC_APB1ENR_I2C1EN % 32 );
+ 80007ee:	4b38      	ldr	r3, [pc, #224]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 80007f0:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 80007f2:	4a37      	ldr	r2, [pc, #220]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 80007f4:	f423 1300 	bic.w	r3, r3, #2097152	@ 0x200000
+ 80007f8:	6413      	str	r3, [r2, #64]	@ 0x40
+		break;
+ 80007fa:	e062      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_APB1ENR_I2C2EN:
+		Clr_Bit(RCC_Registers->APB1ENR, RCC_APB1ENR_I2C2EN % 32 );
+ 80007fc:	4b34      	ldr	r3, [pc, #208]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 80007fe:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 8000800:	4a33      	ldr	r2, [pc, #204]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 8000802:	f423 0380 	bic.w	r3, r3, #4194304	@ 0x400000
+ 8000806:	6413      	str	r3, [r2, #64]	@ 0x40
+		break;
+ 8000808:	e05b      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_APB1ENR_I2C3EN:
+		Clr_Bit(RCC_Registers->APB1ENR, RCC_APB1ENR_I2C3EN % 32 );
+ 800080a:	4b31      	ldr	r3, [pc, #196]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 800080c:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 800080e:	4a30      	ldr	r2, [pc, #192]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 8000810:	f423 0300 	bic.w	r3, r3, #8388608	@ 0x800000
+ 8000814:	6413      	str	r3, [r2, #64]	@ 0x40
+		break;
+ 8000816:	e054      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_APB1ENR_PWREN:
+		Clr_Bit(RCC_Registers->APB1ENR, RCC_APB1ENR_PWREN % 32 );
+ 8000818:	4b2d      	ldr	r3, [pc, #180]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 800081a:	6c1b      	ldr	r3, [r3, #64]	@ 0x40
+ 800081c:	4a2c      	ldr	r2, [pc, #176]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 800081e:	f023 5380 	bic.w	r3, r3, #268435456	@ 0x10000000
+ 8000822:	6413      	str	r3, [r2, #64]	@ 0x40
+		break;
+ 8000824:	e04d      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+
+		// RCC APB2 Peripheral Clock Enable Register (RCC_APB2ENR % 32 )
+	case RCC_APB2ENR_TIM1EN:
+		Clr_Bit(RCC_Registers->APB2ENR, RCC_APB2ENR_TIM1EN % 32 );
+ 8000826:	4b2a      	ldr	r3, [pc, #168]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 8000828:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 800082a:	4a29      	ldr	r2, [pc, #164]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 800082c:	f023 0301 	bic.w	r3, r3, #1
+ 8000830:	6453      	str	r3, [r2, #68]	@ 0x44
+		break;
+ 8000832:	e046      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_APB2ENR_USART1EN:
+		Clr_Bit(RCC_Registers->APB2ENR, RCC_APB2ENR_USART1EN % 32 );
+ 8000834:	4b26      	ldr	r3, [pc, #152]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 8000836:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 8000838:	4a25      	ldr	r2, [pc, #148]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 800083a:	f023 0310 	bic.w	r3, r3, #16
+ 800083e:	6453      	str	r3, [r2, #68]	@ 0x44
+		break;
+ 8000840:	e03f      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_APB2ENR_USART6EN:
+		Clr_Bit(RCC_Registers->APB2ENR, RCC_APB2ENR_USART6EN % 32 );
+ 8000842:	4b23      	ldr	r3, [pc, #140]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 8000844:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 8000846:	4a22      	ldr	r2, [pc, #136]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 8000848:	f023 0320 	bic.w	r3, r3, #32
+ 800084c:	6453      	str	r3, [r2, #68]	@ 0x44
+		break;
+ 800084e:	e038      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_APB2ENR_ADC1EN:
+		Clr_Bit(RCC_Registers->APB2ENR, RCC_APB2ENR_ADC1EN % 32 );
+ 8000850:	4b1f      	ldr	r3, [pc, #124]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 8000852:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 8000854:	4a1e      	ldr	r2, [pc, #120]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 8000856:	f423 7380 	bic.w	r3, r3, #256	@ 0x100
+ 800085a:	6453      	str	r3, [r2, #68]	@ 0x44
+		break;
+ 800085c:	e031      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_APB2ENR_SDIOEN:
+		Clr_Bit(RCC_Registers->APB2ENR, RCC_APB2ENR_SDIOEN % 32 );
+ 800085e:	4b1c      	ldr	r3, [pc, #112]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 8000860:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 8000862:	4a1b      	ldr	r2, [pc, #108]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 8000864:	f423 6300 	bic.w	r3, r3, #2048	@ 0x800
+ 8000868:	6453      	str	r3, [r2, #68]	@ 0x44
+		break;
+ 800086a:	e02a      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_APB2ENR_SPI1EN:
+		Clr_Bit(RCC_Registers->APB2ENR, RCC_APB2ENR_SPI1EN % 32 );
+ 800086c:	4b18      	ldr	r3, [pc, #96]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 800086e:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 8000870:	4a17      	ldr	r2, [pc, #92]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 8000872:	f423 5380 	bic.w	r3, r3, #4096	@ 0x1000
+ 8000876:	6453      	str	r3, [r2, #68]	@ 0x44
+		break;
+ 8000878:	e023      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_APB2ENR_SPI4EN:
+		Clr_Bit(RCC_Registers->APB2ENR, RCC_APB2ENR_SPI4EN % 32 );
+ 800087a:	4b15      	ldr	r3, [pc, #84]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 800087c:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 800087e:	4a14      	ldr	r2, [pc, #80]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 8000880:	f423 5300 	bic.w	r3, r3, #8192	@ 0x2000
+ 8000884:	6453      	str	r3, [r2, #68]	@ 0x44
+		break;
+ 8000886:	e01c      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_APB2ENR_SYSCFGEN:
+		Clr_Bit(RCC_Registers->APB2ENR, RCC_APB2ENR_SYSCFGEN % 32 );
+ 8000888:	4b11      	ldr	r3, [pc, #68]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 800088a:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 800088c:	4a10      	ldr	r2, [pc, #64]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 800088e:	f423 4380 	bic.w	r3, r3, #16384	@ 0x4000
+ 8000892:	6453      	str	r3, [r2, #68]	@ 0x44
+		break;
+ 8000894:	e015      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_APB2ENR_TIM9EN:
+		Clr_Bit(RCC_Registers->APB2ENR, RCC_APB2ENR_TIM9EN % 32 );
+ 8000896:	4b0e      	ldr	r3, [pc, #56]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 8000898:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 800089a:	4a0d      	ldr	r2, [pc, #52]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 800089c:	f423 3380 	bic.w	r3, r3, #65536	@ 0x10000
+ 80008a0:	6453      	str	r3, [r2, #68]	@ 0x44
+		break;
+ 80008a2:	e00e      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_APB2ENR_TIM10EN:
+		Clr_Bit(RCC_Registers->APB2ENR, RCC_APB2ENR_TIM10EN % 32 );
+ 80008a4:	4b0a      	ldr	r3, [pc, #40]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 80008a6:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 80008a8:	4a09      	ldr	r2, [pc, #36]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 80008aa:	f423 3300 	bic.w	r3, r3, #131072	@ 0x20000
+ 80008ae:	6453      	str	r3, [r2, #68]	@ 0x44
+		break;
+ 80008b0:	e007      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+	case RCC_APB2ENR_TIM11EN:
+		Clr_Bit(RCC_Registers->APB2ENR, RCC_APB2ENR_TIM11EN % 32 );
+ 80008b2:	4b07      	ldr	r3, [pc, #28]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 80008b4:	6c5b      	ldr	r3, [r3, #68]	@ 0x44
+ 80008b6:	4a06      	ldr	r2, [pc, #24]	@ (80008d0 <RCC_Disable_peripheral+0x334>)
+ 80008b8:	f423 2380 	bic.w	r3, r3, #262144	@ 0x40000
+ 80008bc:	6453      	str	r3, [r2, #68]	@ 0x44
+		break;
+ 80008be:	e000      	b.n	80008c2 <RCC_Disable_peripheral+0x326>
+
+	default:
+		// Handle unknown cases if necessary
+		break;
+ 80008c0:	bf00      	nop
+	}
+}
+ 80008c2:	bf00      	nop
+ 80008c4:	370c      	adds	r7, #12
+ 80008c6:	46bd      	mov	sp, r7
+ 80008c8:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 80008cc:	4770      	bx	lr
+ 80008ce:	bf00      	nop
+ 80008d0:	40023800 	.word	0x40023800
+
+080008d4 <RCC_PLLM_Config>:
+
+void RCC_PLLM_Config(){
+ 80008d4:	b480      	push	{r7}
+ 80008d6:	b083      	sub	sp, #12
+ 80008d8:	af00      	add	r7, sp, #0
+	uint32 temp_PLLCFGR = RCC_Registers->PLLCFGR;
+ 80008da:	4b0a      	ldr	r3, [pc, #40]	@ (8000904 <RCC_PLLM_Config+0x30>)
+ 80008dc:	685b      	ldr	r3, [r3, #4]
+ 80008de:	607b      	str	r3, [r7, #4]
+	temp_PLLCFGR &=(~((uint32)PLLM_MASK));
+ 80008e0:	687b      	ldr	r3, [r7, #4]
+ 80008e2:	f023 031f 	bic.w	r3, r3, #31
+ 80008e6:	607b      	str	r3, [r7, #4]
+	temp_PLLCFGR|= (uint32)(PLLM_VALUE << PLLM_pos );
+ 80008e8:	687b      	ldr	r3, [r7, #4]
+ 80008ea:	f043 030f 	orr.w	r3, r3, #15
+ 80008ee:	607b      	str	r3, [r7, #4]
+		RCC_Registers->PLLCFGR = temp_PLLCFGR;
+ 80008f0:	4a04      	ldr	r2, [pc, #16]	@ (8000904 <RCC_PLLM_Config+0x30>)
+ 80008f2:	687b      	ldr	r3, [r7, #4]
+ 80008f4:	6053      	str	r3, [r2, #4]
+}
+ 80008f6:	bf00      	nop
+ 80008f8:	370c      	adds	r7, #12
+ 80008fa:	46bd      	mov	sp, r7
+ 80008fc:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000900:	4770      	bx	lr
+ 8000902:	bf00      	nop
+ 8000904:	40023800 	.word	0x40023800
+
+08000908 <RCC_PLLN_Config>:
+void RCC_PLLN_Config(){
+ 8000908:	b480      	push	{r7}
+ 800090a:	b083      	sub	sp, #12
+ 800090c:	af00      	add	r7, sp, #0
+	uint32 temp_PLLCFGR = RCC_Registers->PLLCFGR;
+ 800090e:	4b0b      	ldr	r3, [pc, #44]	@ (800093c <RCC_PLLN_Config+0x34>)
+ 8000910:	685b      	ldr	r3, [r3, #4]
+ 8000912:	607b      	str	r3, [r7, #4]
+	temp_PLLCFGR &=(~((uint32)PLLN_MASK));
+ 8000914:	687b      	ldr	r3, [r7, #4]
+ 8000916:	f423 537f 	bic.w	r3, r3, #16320	@ 0x3fc0
+ 800091a:	f023 0320 	bic.w	r3, r3, #32
+ 800091e:	607b      	str	r3, [r7, #4]
+	temp_PLLCFGR|= (uint32)(PLLN_VALUE << PLLN_pos) ;
+ 8000920:	687b      	ldr	r3, [r7, #4]
+ 8000922:	f443 5340 	orr.w	r3, r3, #12288	@ 0x3000
+ 8000926:	607b      	str	r3, [r7, #4]
+		RCC_Registers->PLLCFGR = temp_PLLCFGR;
+ 8000928:	4a04      	ldr	r2, [pc, #16]	@ (800093c <RCC_PLLN_Config+0x34>)
+ 800092a:	687b      	ldr	r3, [r7, #4]
+ 800092c:	6053      	str	r3, [r2, #4]
+}
+ 800092e:	bf00      	nop
+ 8000930:	370c      	adds	r7, #12
+ 8000932:	46bd      	mov	sp, r7
+ 8000934:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 8000938:	4770      	bx	lr
+ 800093a:	bf00      	nop
+ 800093c:	40023800 	.word	0x40023800
+
+08000940 <RCC_PLLP_Config>:
+void RCC_PLLP_Config(){
+ 8000940:	b480      	push	{r7}
+ 8000942:	b083      	sub	sp, #12
+ 8000944:	af00      	add	r7, sp, #0
+	uint32 temp_PLLCFGR = RCC_Registers->PLLCFGR;
+ 8000946:	4b0a      	ldr	r3, [pc, #40]	@ (8000970 <RCC_PLLP_Config+0x30>)
+ 8000948:	685b      	ldr	r3, [r3, #4]
+ 800094a:	607b      	str	r3, [r7, #4]
+	temp_PLLCFGR &=(~((uint32)PLLP_MASK));
+ 800094c:	687b      	ldr	r3, [r7, #4]
+ 800094e:	f423 3340 	bic.w	r3, r3, #196608	@ 0x30000
+ 8000952:	607b      	str	r3, [r7, #4]
+	temp_PLLCFGR|= (uint32)(PLLP_VALUE << PLLP_pos) ;
+ 8000954:	687b      	ldr	r3, [r7, #4]
+ 8000956:	f443 3340 	orr.w	r3, r3, #196608	@ 0x30000
+ 800095a:	607b      	str	r3, [r7, #4]
+		RCC_Registers->PLLCFGR = temp_PLLCFGR;
+ 800095c:	4a04      	ldr	r2, [pc, #16]	@ (8000970 <RCC_PLLP_Config+0x30>)
+ 800095e:	687b      	ldr	r3, [r7, #4]
+ 8000960:	6053      	str	r3, [r2, #4]
+}
+ 8000962:	bf00      	nop
+ 8000964:	370c      	adds	r7, #12
+ 8000966:	46bd      	mov	sp, r7
+ 8000968:	f85d 7b04 	ldr.w	r7, [sp], #4
+ 800096c:	4770      	bx	lr
+ 800096e:	bf00      	nop
+ 8000970:	40023800 	.word	0x40023800
+
+08000974 <main>:
 //#include "../MCAL/RCC_Driver/RCC_Registers.h"
 #include "../MCAL/RCC_Driver/RCC_Interface.h"
 #include "../LIB/STD_Types.h"
 #include "../LIB/Bit_Math.h"
 int main(void)
 {
- 8000368:	b580      	push	{r7, lr}
- 800036a:	af00      	add	r7, sp, #0
+ 8000974:	b580      	push	{r7, lr}
+ 8000976:	af00      	add	r7, sp, #0
 	RCC_Init();
- 800036c:	f7ff ff32 	bl	80001d4 <RCC_Init>
-	RCC_Enable_peripheral(AHP1,RCC_AHB1ENR_GPIOA_EN);
- 8000370:	2100      	movs	r1, #0
- 8000372:	2000      	movs	r0, #0
- 8000374:	f7ff ff60 	bl	8000238 <RCC_Enable_peripheral>
+ 8000978:	f7ff fc2c 	bl	80001d4 <RCC_Init>
+	RCC_Enable_peripheral(RCC_AHB1ENR_GPIOA_EN);
+ 800097c:	2000      	movs	r0, #0
+ 800097e:	f7ff fc71 	bl	8000264 <RCC_Enable_peripheral>
 
-	RCC_Enable_peripheral(APB1,RCC_APB1ENR_TIM2EN);
- 8000378:	2100      	movs	r1, #0
- 800037a:	2002      	movs	r0, #2
- 800037c:	f7ff ff5c 	bl	8000238 <RCC_Enable_peripheral>
+	RCC_Enable_peripheral(RCC_APB1ENR_TIM2EN);
+ 8000982:	2020      	movs	r0, #32
+ 8000984:	f7ff fc6e 	bl	8000264 <RCC_Enable_peripheral>
 
-	RCC_Enable_peripheral(APB2,RCC_APB2ENR_TIM9EN);
- 8000380:	2110      	movs	r1, #16
- 8000382:	2003      	movs	r0, #3
- 8000384:	f7ff ff58 	bl	8000238 <RCC_Enable_peripheral>
+	RCC_Enable_peripheral(RCC_APB2ENR_TIM9EN);
+ 8000988:	2050      	movs	r0, #80	@ 0x50
+ 800098a:	f7ff fc6b 	bl	8000264 <RCC_Enable_peripheral>
 
-	RCC_Disable_peripheral(AHP1,RCC_AHB1ENR_GPIOA_EN);
- 8000388:	2100      	movs	r1, #0
- 800038a:	2000      	movs	r0, #0
- 800038c:	f7ff ff9e 	bl	80002cc <RCC_Disable_peripheral>
+	RCC_Disable_peripheral(RCC_AHB1ENR_GPIOA_EN);
+ 800098e:	2000      	movs	r0, #0
+ 8000990:	f7ff fe04 	bl	800059c <RCC_Disable_peripheral>
 
-	RCC_Disable_peripheral(APB1,RCC_APB1ENR_TIM2EN);
- 8000390:	2100      	movs	r1, #0
- 8000392:	2002      	movs	r0, #2
- 8000394:	f7ff ff9a 	bl	80002cc <RCC_Disable_peripheral>
+	RCC_Disable_peripheral(RCC_APB1ENR_TIM2EN);
+ 8000994:	2020      	movs	r0, #32
+ 8000996:	f7ff fe01 	bl	800059c <RCC_Disable_peripheral>
 
-	RCC_Disable_peripheral(APB2,RCC_APB2ENR_TIM9EN);
- 8000398:	2110      	movs	r1, #16
- 800039a:	2003      	movs	r0, #3
- 800039c:	f7ff ff96 	bl	80002cc <RCC_Disable_peripheral>
+	RCC_Disable_peripheral(RCC_APB2ENR_TIM9EN);
+ 800099a:	2050      	movs	r0, #80	@ 0x50
+ 800099c:	f7ff fdfe 	bl	800059c <RCC_Disable_peripheral>
 
     while(1){
- 80003a0:	bf00      	nop
- 80003a2:	e7fd      	b.n	80003a0 <main+0x38>
+ 80009a0:	bf00      	nop
+ 80009a2:	e7fd      	b.n	80009a0 <main+0x2c>
 
-080003a4 <Reset_Handler>:
+080009a4 <Reset_Handler>:
 
   .section .text.Reset_Handler
   .weak Reset_Handler
   .type Reset_Handler, %function
 Reset_Handler:
   ldr   r0, =_estack
- 80003a4:	480d      	ldr	r0, [pc, #52]	@ (80003dc <LoopForever+0x2>)
+ 80009a4:	480d      	ldr	r0, [pc, #52]	@ (80009dc <LoopForever+0x2>)
   mov   sp, r0          /* set stack pointer */
- 80003a6:	4685      	mov	sp, r0
+ 80009a6:	4685      	mov	sp, r0
 /* Call the clock system initialization function.*/
   bl  SystemInit
- 80003a8:	f3af 8000 	nop.w
+ 80009a8:	f3af 8000 	nop.w
 
 /* Copy the data segment initializers from flash to SRAM */
   ldr r0, =_sdata
- 80003ac:	480c      	ldr	r0, [pc, #48]	@ (80003e0 <LoopForever+0x6>)
+ 80009ac:	480c      	ldr	r0, [pc, #48]	@ (80009e0 <LoopForever+0x6>)
   ldr r1, =_edata
- 80003ae:	490d      	ldr	r1, [pc, #52]	@ (80003e4 <LoopForever+0xa>)
+ 80009ae:	490d      	ldr	r1, [pc, #52]	@ (80009e4 <LoopForever+0xa>)
   ldr r2, =_sidata
- 80003b0:	4a0d      	ldr	r2, [pc, #52]	@ (80003e8 <LoopForever+0xe>)
+ 80009b0:	4a0d      	ldr	r2, [pc, #52]	@ (80009e8 <LoopForever+0xe>)
   movs r3, #0
- 80003b2:	2300      	movs	r3, #0
+ 80009b2:	2300      	movs	r3, #0
   b LoopCopyDataInit
- 80003b4:	e002      	b.n	80003bc <LoopCopyDataInit>
+ 80009b4:	e002      	b.n	80009bc <LoopCopyDataInit>
 
-080003b6 <CopyDataInit>:
+080009b6 <CopyDataInit>:
 
 CopyDataInit:
   ldr r4, [r2, r3]
- 80003b6:	58d4      	ldr	r4, [r2, r3]
+ 80009b6:	58d4      	ldr	r4, [r2, r3]
   str r4, [r0, r3]
- 80003b8:	50c4      	str	r4, [r0, r3]
+ 80009b8:	50c4      	str	r4, [r0, r3]
   adds r3, r3, #4
- 80003ba:	3304      	adds	r3, #4
+ 80009ba:	3304      	adds	r3, #4
 
-080003bc <LoopCopyDataInit>:
+080009bc <LoopCopyDataInit>:
 
 LoopCopyDataInit:
   adds r4, r0, r3
- 80003bc:	18c4      	adds	r4, r0, r3
+ 80009bc:	18c4      	adds	r4, r0, r3
   cmp r4, r1
- 80003be:	428c      	cmp	r4, r1
+ 80009be:	428c      	cmp	r4, r1
   bcc CopyDataInit
- 80003c0:	d3f9      	bcc.n	80003b6 <CopyDataInit>
+ 80009c0:	d3f9      	bcc.n	80009b6 <CopyDataInit>
 
 /* Zero fill the bss segment. */
   ldr r2, =_sbss
- 80003c2:	4a0a      	ldr	r2, [pc, #40]	@ (80003ec <LoopForever+0x12>)
+ 80009c2:	4a0a      	ldr	r2, [pc, #40]	@ (80009ec <LoopForever+0x12>)
   ldr r4, =_ebss
- 80003c4:	4c0a      	ldr	r4, [pc, #40]	@ (80003f0 <LoopForever+0x16>)
+ 80009c4:	4c0a      	ldr	r4, [pc, #40]	@ (80009f0 <LoopForever+0x16>)
   movs r3, #0
- 80003c6:	2300      	movs	r3, #0
+ 80009c6:	2300      	movs	r3, #0
   b LoopFillZerobss
- 80003c8:	e001      	b.n	80003ce <LoopFillZerobss>
+ 80009c8:	e001      	b.n	80009ce <LoopFillZerobss>
 
-080003ca <FillZerobss>:
+080009ca <FillZerobss>:
 
 FillZerobss:
   str  r3, [r2]
- 80003ca:	6013      	str	r3, [r2, #0]
+ 80009ca:	6013      	str	r3, [r2, #0]
   adds r2, r2, #4
- 80003cc:	3204      	adds	r2, #4
+ 80009cc:	3204      	adds	r2, #4
 
-080003ce <LoopFillZerobss>:
+080009ce <LoopFillZerobss>:
 
 LoopFillZerobss:
   cmp r2, r4
- 80003ce:	42a2      	cmp	r2, r4
+ 80009ce:	42a2      	cmp	r2, r4
   bcc FillZerobss
- 80003d0:	d3fb      	bcc.n	80003ca <FillZerobss>
+ 80009d0:	d3fb      	bcc.n	80009ca <FillZerobss>
 
 /* Call static constructors */
   bl __libc_init_array
- 80003d2:	f000 f811 	bl	80003f8 <__libc_init_array>
+ 80009d2:	f000 f811 	bl	80009f8 <__libc_init_array>
 /* Call the application's entry point.*/
   bl main
- 80003d6:	f7ff ffc7 	bl	8000368 <main>
+ 80009d6:	f7ff ffcd 	bl	8000974 <main>
 
-080003da <LoopForever>:
+080009da <LoopForever>:
 
 LoopForever:
   b LoopForever
- 80003da:	e7fe      	b.n	80003da <LoopForever>
+ 80009da:	e7fe      	b.n	80009da <LoopForever>
   ldr   r0, =_estack
- 80003dc:	20010000 	.word	0x20010000
+ 80009dc:	20010000 	.word	0x20010000
   ldr r0, =_sdata
- 80003e0:	20000000 	.word	0x20000000
+ 80009e0:	20000000 	.word	0x20000000
   ldr r1, =_edata
- 80003e4:	20000000 	.word	0x20000000
+ 80009e4:	20000000 	.word	0x20000000
   ldr r2, =_sidata
- 80003e8:	08000460 	.word	0x08000460
+ 80009e8:	08000a60 	.word	0x08000a60
   ldr r2, =_sbss
- 80003ec:	20000000 	.word	0x20000000
+ 80009ec:	20000000 	.word	0x20000000
   ldr r4, =_ebss
- 80003f0:	2000001c 	.word	0x2000001c
+ 80009f0:	2000001c 	.word	0x2000001c
 
-080003f4 <ADC_IRQHandler>:
+080009f4 <ADC_IRQHandler>:
  * @retval : None
 */
   .section .text.Default_Handler,"ax",%progbits
 Default_Handler:
 Infinite_Loop:
   b Infinite_Loop
- 80003f4:	e7fe      	b.n	80003f4 <ADC_IRQHandler>
+ 80009f4:	e7fe      	b.n	80009f4 <ADC_IRQHandler>
 	...
 
-080003f8 <__libc_init_array>:
- 80003f8:	b570      	push	{r4, r5, r6, lr}
- 80003fa:	4d0d      	ldr	r5, [pc, #52]	@ (8000430 <__libc_init_array+0x38>)
- 80003fc:	4c0d      	ldr	r4, [pc, #52]	@ (8000434 <__libc_init_array+0x3c>)
- 80003fe:	1b64      	subs	r4, r4, r5
- 8000400:	10a4      	asrs	r4, r4, #2
- 8000402:	2600      	movs	r6, #0
- 8000404:	42a6      	cmp	r6, r4
- 8000406:	d109      	bne.n	800041c <__libc_init_array+0x24>
- 8000408:	4d0b      	ldr	r5, [pc, #44]	@ (8000438 <__libc_init_array+0x40>)
- 800040a:	4c0c      	ldr	r4, [pc, #48]	@ (800043c <__libc_init_array+0x44>)
- 800040c:	f000 f818 	bl	8000440 <_init>
- 8000410:	1b64      	subs	r4, r4, r5
- 8000412:	10a4      	asrs	r4, r4, #2
- 8000414:	2600      	movs	r6, #0
- 8000416:	42a6      	cmp	r6, r4
- 8000418:	d105      	bne.n	8000426 <__libc_init_array+0x2e>
- 800041a:	bd70      	pop	{r4, r5, r6, pc}
- 800041c:	f855 3b04 	ldr.w	r3, [r5], #4
- 8000420:	4798      	blx	r3
- 8000422:	3601      	adds	r6, #1
- 8000424:	e7ee      	b.n	8000404 <__libc_init_array+0xc>
- 8000426:	f855 3b04 	ldr.w	r3, [r5], #4
- 800042a:	4798      	blx	r3
- 800042c:	3601      	adds	r6, #1
- 800042e:	e7f2      	b.n	8000416 <__libc_init_array+0x1e>
- 8000430:	08000458 	.word	0x08000458
- 8000434:	08000458 	.word	0x08000458
- 8000438:	08000458 	.word	0x08000458
- 800043c:	0800045c 	.word	0x0800045c
+080009f8 <__libc_init_array>:
+ 80009f8:	b570      	push	{r4, r5, r6, lr}
+ 80009fa:	4d0d      	ldr	r5, [pc, #52]	@ (8000a30 <__libc_init_array+0x38>)
+ 80009fc:	4c0d      	ldr	r4, [pc, #52]	@ (8000a34 <__libc_init_array+0x3c>)
+ 80009fe:	1b64      	subs	r4, r4, r5
+ 8000a00:	10a4      	asrs	r4, r4, #2
+ 8000a02:	2600      	movs	r6, #0
+ 8000a04:	42a6      	cmp	r6, r4
+ 8000a06:	d109      	bne.n	8000a1c <__libc_init_array+0x24>
+ 8000a08:	4d0b      	ldr	r5, [pc, #44]	@ (8000a38 <__libc_init_array+0x40>)
+ 8000a0a:	4c0c      	ldr	r4, [pc, #48]	@ (8000a3c <__libc_init_array+0x44>)
+ 8000a0c:	f000 f818 	bl	8000a40 <_init>
+ 8000a10:	1b64      	subs	r4, r4, r5
+ 8000a12:	10a4      	asrs	r4, r4, #2
+ 8000a14:	2600      	movs	r6, #0
+ 8000a16:	42a6      	cmp	r6, r4
+ 8000a18:	d105      	bne.n	8000a26 <__libc_init_array+0x2e>
+ 8000a1a:	bd70      	pop	{r4, r5, r6, pc}
+ 8000a1c:	f855 3b04 	ldr.w	r3, [r5], #4
+ 8000a20:	4798      	blx	r3
+ 8000a22:	3601      	adds	r6, #1
+ 8000a24:	e7ee      	b.n	8000a04 <__libc_init_array+0xc>
+ 8000a26:	f855 3b04 	ldr.w	r3, [r5], #4
+ 8000a2a:	4798      	blx	r3
+ 8000a2c:	3601      	adds	r6, #1
+ 8000a2e:	e7f2      	b.n	8000a16 <__libc_init_array+0x1e>
+ 8000a30:	08000a58 	.word	0x08000a58
+ 8000a34:	08000a58 	.word	0x08000a58
+ 8000a38:	08000a58 	.word	0x08000a58
+ 8000a3c:	08000a5c 	.word	0x08000a5c
 
-08000440 <_init>:
- 8000440:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 8000442:	bf00      	nop
- 8000444:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 8000446:	bc08      	pop	{r3}
- 8000448:	469e      	mov	lr, r3
- 800044a:	4770      	bx	lr
+08000a40 <_init>:
+ 8000a40:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8000a42:	bf00      	nop
+ 8000a44:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8000a46:	bc08      	pop	{r3}
+ 8000a48:	469e      	mov	lr, r3
+ 8000a4a:	4770      	bx	lr
 
-0800044c <_fini>:
- 800044c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
- 800044e:	bf00      	nop
- 8000450:	bcf8      	pop	{r3, r4, r5, r6, r7}
- 8000452:	bc08      	pop	{r3}
- 8000454:	469e      	mov	lr, r3
- 8000456:	4770      	bx	lr
+08000a4c <_fini>:
+ 8000a4c:	b5f8      	push	{r3, r4, r5, r6, r7, lr}
+ 8000a4e:	bf00      	nop
+ 8000a50:	bcf8      	pop	{r3, r4, r5, r6, r7}
+ 8000a52:	bc08      	pop	{r3}
+ 8000a54:	469e      	mov	lr, r3
+ 8000a56:	4770      	bx	lr

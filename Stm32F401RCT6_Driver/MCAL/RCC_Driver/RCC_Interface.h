@@ -18,8 +18,7 @@
 #define APB2 3
 
 void RCC_Init(void);
-void RCC_Enable_peripheral(uint8 Desired_Bus ,uint8 peripheral);
-void RCC_Disable_peripheral(uint8 Desired_Bus ,uint8 peripheral);
-
+void RCC_Enable_peripheral(peripherals_t Peripheral);
+void RCC_Disable_peripheral(peripherals_t Peripheral);
 
 #endif /* RCC_DRIVER_RCC_INTERFACE_H_ */
