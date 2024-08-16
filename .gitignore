@@ -54,6 +54,17 @@ modules.order
 Module.symvers
 Mkfile.old
 dkms.conf
-.vscode 
-.metadata 
+
+# IDE/Editor-specific files
+.vscode
+.metadata
+.cproject
+.project
+.settings/
+
+# STM32 specific files
+Debug/
+Startup/
+Stm32F401RCT6_Driver Debug.launch
+
 # End of https://www.toptal.com/developers/gitignore/api/c
