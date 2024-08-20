@@ -9,7 +9,7 @@
 #define RCC_DRIVER_RCC_CONFIG_H_
 
 /* Choose clock from here */
-#define RCC_Clock RCC_PLL
+#define RCC_Clock RCC_HSE
 /*in case your choose is PLL Make you configurations here*/
 #define PLLM 15 //THIS VALUE CAN BE BETWEEN 2 and 63 (2 ≤PLLM ≤63)
 #define PLLN 192//THIS VALUE CAN BE BETWEEN 192 AND 432 (192 ≤PLLN ≤432)

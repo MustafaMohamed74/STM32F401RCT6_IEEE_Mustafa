@@ -20,22 +20,29 @@
 #include "../MCAL/RCC_Driver/RCC_Interface.h"
 #include "../LIB/STD_Types.h"
 #include "../LIB/Bit_Math.h"
+#include "../MCAL/GPIO_Driver/GPIO_Interface.h"
+#include "../MCAL/GPIO_Driver/GPIO_Register.h"
+
 int main(void)
 {
 	RCC_Init();
 	RCC_Enable_peripheral(RCC_AHB1ENR_GPIOA_EN);
-
-	RCC_Enable_peripheral(RCC_APB1ENR_TIM2EN);
-
-	RCC_Enable_peripheral(RCC_APB2ENR_TIM9EN);
-
-	RCC_Disable_peripheral(RCC_AHB1ENR_GPIOA_EN);
-
-	RCC_Disable_peripheral(RCC_APB1ENR_TIM2EN);
-
-	RCC_Disable_peripheral(RCC_APB2ENR_TIM9EN);
-//bla bla bla
+	RCC_Enable_peripheral(RCC_AHB1ENR_GPIOB_EN);
+	GPIO_SetPinDirection(GPIO_PORT_A,GPIO_PIN_1,GPIO_PIN_OUTPUT,GPIO_NoPull);
+	GPIO_SetPinValue(GPIO_PORT_A, GPIO_PIN_1,GPIO_Pin_High);
+	GPIO_SetPinDirection(GPIO_PORT_A,GPIO_PIN_2,GPIO_PIN_INPUT,GPIO_PULLUP);
+//	GPIO_SetPinValue(GPIO_PORT_A, GPIO_PIN_0,GPIO_Pin_High);
+//	GPIO_SetPortDirection(GPIO_PORT_A, GPIO_PORT_OUTPUT, GPIO_NoPull);
+//	GPIO_SetPortValue(GPIO_PORT_A, GPIO_Port_High);
+//	for(uint32 i=0 ; i<=8000 ; i++);
+//	GPIO_SetPortValue(GPIO_PORT_A, GPIO_Port_LOW);
+//	for(uint32 i=0 ; i<=8000 ; i++);
+//	GPIO_SetPortValue(GPIO_PORT_A, GPIO_Port_LOW);
     while(1){
-
+    	if(GPIO_GetPinValue(GPIO_PORT_A, GPIO_PIN_2)){
+    		GPIO_SetPinValue(GPIO_PORT_A,GPIO_PIN_1 , GPIO_Pin_LOW);
+    	}else{
+    	GPIO_SetPinValue(GPIO_PORT_A,GPIO_PIN_1 , GPIO_Pin_High);
+    	}
     }
 }
