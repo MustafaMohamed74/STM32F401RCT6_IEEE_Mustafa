@@ -105,30 +105,68 @@ void GPIO_PinConfig(GPIO_Pin_Cofig * config){
 	}
 }
 
+//void GPIO_SetPinValue(uint8 PortNo, uint8 PinNo ,uint8 Value){
+//	if(PortNo >= 0 && PortNo <= 2){
+//		switch (PortNo){
+//		case GPIO_PORT_A :
+//			if(PinNo<13 ){
+//				uint32 temp_ODR_A = GPIOA_Registers->ODR ;
+//				temp_ODR_A &=(~((((uint32)Pin_Mask_Single))<<PinNo));
+//				temp_ODR_A |= (((uint32)Value)<<PinNo);
+//				GPIOA_Registers->ODR = temp_ODR_A;
+//			}
+//			break ;
+//
+//		case GPIO_PORT_B :
+//			uint32 temp_ODR_B = GPIOB_Registers->ODR ;
+//			temp_ODR_B &=(~((((uint32)Pin_Mask_Single))<<PinNo));
+//			temp_ODR_B |= (((uint32)Value)<<PinNo);
+//			GPIOB_Registers->ODR = temp_ODR_B;
+//			break ;
+//
+//		case GPIO_PORT_C :
+//			uint32 temp_ODR_C = GPIOC_Registers->ODR ;
+//			temp_ODR_C &=(~((((uint32)Pin_Mask_Single))<<PinNo));
+//			temp_ODR_C |= (((uint32)Value)<<PinNo);
+//			GPIOC_Registers->ODR = temp_ODR_C;
+//			break ;
+//
+//		default :
+//			/*Nothing*/
+//		}
+//	}
+//}
+
 void GPIO_SetPinValue(uint8 PortNo, uint8 PinNo ,uint8 Value){
 	if(PortNo >= 0 && PortNo <= 2){
 		switch (PortNo){
 		case GPIO_PORT_A :
 			if(PinNo<13 ){
-				uint32 temp_ODR_A = GPIOA_Registers->ODR ;
-				temp_ODR_A &=(~((((uint32)Pin_Mask_Single))<<PinNo));
-				temp_ODR_A |= (((uint32)Value)<<PinNo);
-				GPIOA_Registers->ODR = temp_ODR_A;
+				if(Value == GPIO_Pin_High){
+					Set_Bit(GPIOA_Registers->BSRR , PinNo);
+				}
+				else if(Value == GPIO_Pin_LOW){
+					Set_Bit(GPIOA_Registers->BSRR , (PinNo+16));
+				}
 			}
 			break ;
 
 		case GPIO_PORT_B :
-			uint32 temp_ODR_B = GPIOB_Registers->ODR ;
-			temp_ODR_B &=(~((((uint32)Pin_Mask_Single))<<PinNo));
-			temp_ODR_B |= (((uint32)Value)<<PinNo);
-			GPIOB_Registers->ODR = temp_ODR_B;
+			if(Value == GPIO_Pin_High){
+				Set_Bit(GPIOB_Registers->BSRR , PinNo);
+			}
+			else if(Value == GPIO_Pin_LOW){
+				Set_Bit(GPIOB_Registers->BSRR , (PinNo+16));
+			}
 			break ;
 
 		case GPIO_PORT_C :
-			uint32 temp_ODR_C = GPIOC_Registers->ODR ;
-			temp_ODR_C &=(~((((uint32)Pin_Mask_Single))<<PinNo));
-			temp_ODR_C |= (((uint32)Value)<<PinNo);
-			GPIOC_Registers->ODR = temp_ODR_C;
+			if(Value == GPIO_Pin_High){
+				Set_Bit(GPIOC_Registers->BSRR , PinNo);
+			}
+			else if(Value == GPIO_Pin_LOW){
+				Set_Bit(GPIOC_Registers->BSRR , (PinNo+16));
+			}
 			break ;
 
 		default :
@@ -136,7 +174,6 @@ void GPIO_SetPinValue(uint8 PortNo, uint8 PinNo ,uint8 Value){
 		}
 	}
 }
-
 uint8 GPIO_GetPinValue(uint8 PortNo, uint8 PinNo){
 	uint8 LocalReturn = 0 ;
 	if(PortNo >= 0 && PortNo <= 2){
