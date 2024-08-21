@@ -29,24 +29,7 @@
 #define Pin_Mask_Douple           (0X3)
 #define Pin_Mask_Single	          (0X1)
 
-//#define Pin1_Mask			(0X0000000CU)
-//#define Pin2_Mask           (0X00000030U)
-//#define Pin3_Mask			(0X000000C0U)
-//#define Pin4_Mask           (0X00000300U)
-//#define Pin5_Mask			(0X00000C00U)
-//#define Pin6_Mask           (0X00003000U)
-//#define Pin7_Mask			(0X0000C000U)
-//#define Pin8_Mask           (0X00030000U)
-//#define Pin9_Mask			(0X000C0000U)
-//#define Pin10_Mask			(0X00300000U)
-//#define Pin11_Mask			(0X00C00000U)
-//#define Pin12_Mask			(0X03000000U)
-//#define Pin13_Mask			(0X0C000000U)
-//#define Pin14_Mask			(0X30000000U)
-//#define Pin15_Mask			(0XC0000000U)
-
 /**************************** TYPE Defines ***********************/
-
 typedef struct {
 	volatile uint32 MODER;     // Offset 0x00: GPIOx_MODER (mode register)
 	volatile uint32 OTYPER;    // Offset 0x04: GPIOx_OTYPER (output type register)

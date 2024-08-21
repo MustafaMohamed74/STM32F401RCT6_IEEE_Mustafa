@@ -25,24 +25,32 @@
 
 int main(void)
 {
+	GPIO_Pin_Cofig Led ;
+	Led.port = GPIO_PORT_A ;
+	Led.pin = GPIO_PIN_0 ;
+	Led.Direction = GPIO_PIN_OUTPUT ;
+	Led.mode = GPIO_OUTPUT_PushPull ;
+	Led.Speed = GPIO_Speed_Medium ;
+
+	GPIO_Pin_Cofig Button ;
+	Button.port = GPIO_PORT_A ;
+	Button.pin = GPIO_PIN_1 ;
+	Button.Direction = GPIO_PIN_INPUT ;
+	Button.mode = GPIO_PULLUP ;
+	Button.Speed = GPIO_Speed_Medium ;
+
 	RCC_Init();
 	RCC_Enable_peripheral(RCC_AHB1ENR_GPIOA_EN);
 	RCC_Enable_peripheral(RCC_AHB1ENR_GPIOB_EN);
-	GPIO_SetPinDirection(GPIO_PORT_A,GPIO_PIN_1,GPIO_PIN_OUTPUT,GPIO_NoPull);
-	GPIO_SetPinValue(GPIO_PORT_A, GPIO_PIN_1,GPIO_Pin_High);
-	GPIO_SetPinDirection(GPIO_PORT_A,GPIO_PIN_2,GPIO_PIN_INPUT,GPIO_PULLUP);
-//	GPIO_SetPinValue(GPIO_PORT_A, GPIO_PIN_0,GPIO_Pin_High);
-//	GPIO_SetPortDirection(GPIO_PORT_A, GPIO_PORT_OUTPUT, GPIO_NoPull);
-//	GPIO_SetPortValue(GPIO_PORT_A, GPIO_Port_High);
-//	for(uint32 i=0 ; i<=8000 ; i++);
-//	GPIO_SetPortValue(GPIO_PORT_A, GPIO_Port_LOW);
-//	for(uint32 i=0 ; i<=8000 ; i++);
-//	GPIO_SetPortValue(GPIO_PORT_A, GPIO_Port_LOW);
+	GPIO_PinConfig(&Led);
+	GPIO_PinConfig(&Button);
+	GPIO_SetPinValue(GPIO_PORT_A, GPIO_PIN_0, GPIO_Pin_High);
+
     while(1){
-    	if(GPIO_GetPinValue(GPIO_PORT_A, GPIO_PIN_2)){
-    		GPIO_SetPinValue(GPIO_PORT_A,GPIO_PIN_1 , GPIO_Pin_LOW);
+    	if(GPIO_GetPinValue(GPIO_PORT_A, GPIO_PIN_1)){
+    		GPIO_SetPinValue(GPIO_PORT_A, GPIO_PIN_0, GPIO_Pin_High);
     	}else{
-    	GPIO_SetPinValue(GPIO_PORT_A,GPIO_PIN_1 , GPIO_Pin_High);
+    		GPIO_SetPinValue(GPIO_PORT_A, GPIO_PIN_0, GPIO_Pin_LOW);
     	}
     }
 }
