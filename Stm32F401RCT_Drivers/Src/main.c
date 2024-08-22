@@ -16,12 +16,13 @@
  ******************************************************************************
  */
 
-//#include "../MCAL/RCC_Driver/RCC_Registers.h"
-#include "../MCAL/RCC_Driver/RCC_Interface.h"
 #include "../LIB/STD_Types.h"
 #include "../LIB/Bit_Math.h"
+#include "../MCAL/RCC_Driver/RCC_Interface.h"
 #include "../MCAL/GPIO_Driver/GPIO_Interface.h"
-#include "../MCAL/GPIO_Driver/GPIO_Register.h"
+#include "../MCAL/SYSTICK_Driver/SYSTICK_Interface.h"
+
+void SYSTICK_INTRRUPT(void);
 
 int main(void)
 {
@@ -32,25 +33,37 @@ int main(void)
 	Led.mode = GPIO_OUTPUT_PushPull ;
 	Led.Speed = GPIO_Speed_Medium ;
 
-	GPIO_Pin_Cofig Button ;
-	Button.port = GPIO_PORT_A ;
-	Button.pin = GPIO_PIN_1 ;
-	Button.Direction = GPIO_PIN_INPUT ;
-	Button.mode = GPIO_PULLUP ;
-	Button.Speed = GPIO_Speed_Medium ;
+	GPIO_Pin_Cofig Led2 ;
+	Led2.port = GPIO_PORT_A ;
+	Led2.pin = GPIO_PIN_2 ;
+	Led2.Direction = GPIO_PIN_OUTPUT ;
+	Led2.mode = GPIO_OUTPUT_PushPull ;
+	Led2.Speed = GPIO_Speed_Medium ;
 
 	RCC_Init();
 	RCC_Enable_peripheral(RCC_AHB1ENR_GPIOA_EN);
 	RCC_Enable_peripheral(RCC_AHB1ENR_GPIOB_EN);
 	GPIO_PinConfig(&Led);
-	GPIO_PinConfig(&Button);
+	GPIO_PinConfig(&Led2);
+	GPIO_SetPinValue(GPIO_PORT_A, GPIO_PIN_2, GPIO_Pin_LOW);
 	GPIO_SetPinValue(GPIO_PORT_A, GPIO_PIN_0, GPIO_Pin_High);
+	SYSTICK_startCountMillisecondsIT(1000,SYSTICK_INTRRUPT);
+	//	SYSTICK_startCountMicrosecondsIT(1000000,SYSTICK_INTRRUPT);
 
-    while(1){
-    	if(GPIO_GetPinValue(GPIO_PORT_A, GPIO_PIN_1)){
-    		GPIO_SetPinValue(GPIO_PORT_A, GPIO_PIN_0, GPIO_Pin_High);
-    	}else{
-    		GPIO_SetPinValue(GPIO_PORT_A, GPIO_PIN_0, GPIO_Pin_LOW);
-    	}
-    }
+	while(1){
+		//
+		GPIO_SetPinValue(GPIO_PORT_A, GPIO_PIN_0, GPIO_Pin_LOW);
+		//		GPIO_SetPinValue(GPIO_PORT_A, GPIO_PIN_2, GPIO_Pin_LOW);
+		//
+		SYSTICK_delayMicroSeconds(1000000);
+		GPIO_SetPinValue(GPIO_PORT_A, GPIO_PIN_0, GPIO_Pin_High);
+		//		GPIO_SetPinValue(GPIO_PORT_A, GPIO_PIN_2, GPIO_Pin_High);
+		//
+		SYSTICK_delayMicroSeconds(1000000);
+
+	}
+}
+
+void SYSTICK_INTRRUPT(void){
+	GPIO_TogglePinValue(GPIO_PORT_A, GPIO_PIN_2);
 }
