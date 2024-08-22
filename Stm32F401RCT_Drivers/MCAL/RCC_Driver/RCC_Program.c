@@ -31,7 +31,7 @@ void RCC_Init(void){
 	/*Enable clock*/
 	Set_Bit(RCC_Registers->CR,HSION);
 	/*wait until it stable*/
-	while(Get_Bit(RCC_Registers->CR,HSIRDY));
+	while(!Get_Bit(RCC_Registers->CR,HSIRDY));
 	/*choose the clock source*/
 	uint32 temp_CFGR = RCC_Registers->CFGR ;
 	temp_CFGR &=(~((uint32)LS2B_MASK));
@@ -52,7 +52,7 @@ void RCC_Init(void){
 	/*Enable clock*/
 	Set_Bit(RCC_Registers->CR,PLLON);
 	/*wait until it stable*/
-	while(Get_Bit(RCC_Registers->CR,PLLRDY));
+	while(!Get_Bit(RCC_Registers->CR,PLLRDY));
 	/*choose the clock source*/
 	uint32 temp_CFGR = RCC_Registers->CFGR ;
 	temp_CFGR &=(~((uint32)LS2B_MASK));

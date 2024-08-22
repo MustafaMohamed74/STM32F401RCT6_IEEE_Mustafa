@@ -20,7 +20,7 @@
 #define GPIO_Speed_Low   		(0b00)
 #define GPIO_Speed_Medium     	(0b01)
 #define GPIO_Speed_High     	(0b10)
-#define GPIO_Speed_VeryHigh    (ob11)
+#define GPIO_Speed_VeryHigh    	(0b11)
 /************************ Pins PullUP \ Down   *****************************/
 #define GPIO_NoPull   	(0b00)
 #define GPIO_PULLUP 	(0b01)

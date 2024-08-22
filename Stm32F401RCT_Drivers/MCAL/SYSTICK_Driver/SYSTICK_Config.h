@@ -8,11 +8,11 @@
 #ifndef SYSTICK_DRIVER_SYSTICK_CONFIG_H_
 #define SYSTICK_DRIVER_SYSTICK_CONFIG_H_
 
-#define SYSTICK_AHB_DIV1 0
-#define SYSTICK_AHB_DIV8 1
+#define SYSTICK_AHB_DIV1 1
+#define SYSTICK_AHB_DIV8 0
 
 /*Choose source from here */
-#define SYSTICK_CLOCK_SOURCE SYSTICK_AHB_DIV1
+#define SYSTICK_CLOCK_SOURCE SYSTICK_AHB_DIV8
 
 /*Write your system clock speed in MHz*/
 #define SYSTICK_CLOCK_SPEED 25

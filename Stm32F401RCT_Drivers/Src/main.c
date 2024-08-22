@@ -31,23 +31,23 @@ int main(void)
 	Led.pin = GPIO_PIN_0 ;
 	Led.Direction = GPIO_PIN_OUTPUT ;
 	Led.mode = GPIO_OUTPUT_PushPull ;
-	Led.Speed = GPIO_Speed_Medium ;
+	Led.Speed = GPIO_Speed_VeryHigh ;
 
 	GPIO_Pin_Cofig Led2 ;
 	Led2.port = GPIO_PORT_A ;
 	Led2.pin = GPIO_PIN_2 ;
 	Led2.Direction = GPIO_PIN_OUTPUT ;
 	Led2.mode = GPIO_OUTPUT_PushPull ;
-	Led2.Speed = GPIO_Speed_Medium ;
+	Led2.Speed = GPIO_Speed_VeryHigh ;
 
 	RCC_Init();
 	RCC_Enable_peripheral(RCC_AHB1ENR_GPIOA_EN);
 	RCC_Enable_peripheral(RCC_AHB1ENR_GPIOB_EN);
 	GPIO_PinConfig(&Led);
 	GPIO_PinConfig(&Led2);
-	GPIO_SetPinValue(GPIO_PORT_A, GPIO_PIN_2, GPIO_Pin_LOW);
+//	GPIO_SetPinValue(GPIO_PORT_A, GPIO_PIN_2, GPIO_Pin_LOW);
 	GPIO_SetPinValue(GPIO_PORT_A, GPIO_PIN_0, GPIO_Pin_High);
-	SYSTICK_startCountMillisecondsIT(1000,SYSTICK_INTRRUPT);
+//	SYSTICK_startCountMillisecondsIT(1000,SYSTICK_INTRRUPT);
 	//	SYSTICK_startCountMicrosecondsIT(1000000,SYSTICK_INTRRUPT);
 
 	while(1){
@@ -55,11 +55,11 @@ int main(void)
 		GPIO_SetPinValue(GPIO_PORT_A, GPIO_PIN_0, GPIO_Pin_LOW);
 		//		GPIO_SetPinValue(GPIO_PORT_A, GPIO_PIN_2, GPIO_Pin_LOW);
 		//
-		SYSTICK_delayMicroSeconds(1000000);
+		SYSTICK_delayMilliSeconds(1000);
 		GPIO_SetPinValue(GPIO_PORT_A, GPIO_PIN_0, GPIO_Pin_High);
 		//		GPIO_SetPinValue(GPIO_PORT_A, GPIO_PIN_2, GPIO_Pin_High);
 		//
-		SYSTICK_delayMicroSeconds(1000000);
+		SYSTICK_delayMilliSeconds(1000);
 
 	}
 }
