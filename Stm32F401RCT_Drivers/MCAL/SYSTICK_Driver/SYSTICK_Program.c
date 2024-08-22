@@ -47,9 +47,8 @@ void SYSTICK_delayMilliSeconds(uint32 ms) {
 	  SYSTICK_delayMicroSeconds(ms);
 	  }*/
 
-
 #if SYSTICK_CLOCK_SOURCE == SYSTICK_AHB_DIV1
-    SYSTICK_Registers->LOAD = (SYSTICK_CLOCK_SPEED * 1000 * ms) - 1;
+    SYSTICK_Registers->LOAD = ((SYSTICK_CLOCK_SPEED * 1000) * ms) - 1;
 #elif  SYSTICK_CLOCK_SOURCE == SYSTICK_AHB_DIV8
     SYSTICK_Registers->LOAD = (((SYSTICK_CLOCK_SPEED * 1000) / 8) * ms) - 1;
 #endif
@@ -115,7 +114,7 @@ void SYSTICK_startCountMillisecondsIT(uint32 ms, void (*ptr)(void)) {
 #if SYSTICK_CLOCK_SOURCE == SYSTICK_AHB_DIV1
     SYSTICK_Registers->LOAD = (SYSTICK_CLOCK_SPEED *1000 * ms);
 #elif  SYSTICK_CLOCK_SOURCE == SYSTICK_AHB_DIV8
-    SYSTICK_Registers->LOAD = (SYSTICK_CLOCK_SPEED / 8 * ms);
+    SYSTICK_Registers->LOAD = ((SYSTICK_CLOCK_SPEED / 8) * ms);
 #endif
 
     Set_Bit(SYSTICK_Registers->CTRL, ENABLE);
@@ -133,7 +132,7 @@ void SYSTICK_startCountMicrosecondsIT(uint32 us, void (*ptr)(void)) {
 #if SYSTICK_CLOCK_SOURCE == SYSTICK_AHB_DIV1
     SYSTICK_Registers->LOAD = (SYSTICK_CLOCK_SPEED  * us);
 #elif  SYSTICK_CLOCK_SOURCE == SYSTICK_AHB_DIV8
-    SYSTICK_Registers->LOAD = (SYSTICK_CLOCK_SPEED / 8 * us);
+    SYSTICK_Registers->LOAD = ((SYSTICK_CLOCK_SPEED / 8) * us);
 #endif
 
     Set_Bit(SYSTICK_Registers->CTRL, ENABLE);
